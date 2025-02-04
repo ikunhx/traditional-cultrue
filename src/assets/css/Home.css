@@ -1,0 +1,75 @@
+.first-box {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    /* 使用视口单位 */
+    overflow: hidden;
+}
+
+.header-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out;
+    height: 102%;
+    /* 根据需要调整 */
+
+}
+
+.faceBox {
+    width: 100vw;
+    height: 200vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    user-select: none; /* 文本不可选中 */
+    font-family: KaiTi;
+    transition: all 1s ease-in-out;
+}
+
+.faceBox-up {
+    background-color: #202020;
+    opacity: 0.8;
+    transform: translateY(-100vh);
+}
+
+.face-title {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+    display: flex;
+    /* background-color: aqua; */
+
+}
+
+.face-title p {
+
+    font-weight: 800;
+    font-size: 50px;
+    letter-spacing: 20px;
+    color: rgb(234, 230, 238);
+}
+
+.face-text {
+    width: 100vw;
+    height: 100vh;
+    /* background-color: pink; */
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+    display: flex;
+}
+
+.face-text p {
+    width: 40vw;
+    /* height: 40vh; */
+    word-wrap: break-word;
+    font-size: 40px;
+    letter-spacing: 10px;
+    color: rgb(213, 202, 202);
+}

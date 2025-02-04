@@ -1,28 +1,63 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <Loading class="Loading"/> -->
+    <div class="box">
+      <router-view></router-view>
+    </div>
+    <Login></Login>
+    <!-- <SwitchBtn></SwitchBtn> -->
+    <!-- <SignUp></SignUp> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Loading from "./components/Loading.vue";
+import Login from "./pages/Login.vue";
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      isLoading: true,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    Loading,
+    Login,
+  },
+  methods: {
+    homeShow(name) {
+      if (this.$route.path !== "/home" && this.$router.path !== "/") {
+        console.log(name);
+        this.$router.push({
+          name: name,
+        });
+        console.log("####");
+      }
+    },
+    LoginShow(name) {
+      if(this.$route.path!=='/Login'){
+        this.$router.push({
+          name: name,
+        });
+      }
+    },
+    SignUpShow(name) {
+      if(this.$route.path!=='/SignUp'){
+        this.$router.push({
+          name: name,
+        });
+      }
+    },
+  },
+  mounted() {
+    this.$bus.$on("c-home", this.homeShow);
+    this.$bus.$on("c-Login", this.LoginShow);
+    this.$bus.$on("c-SignUp", this.SignUpShow);
+
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+/* 定义进入和离开的过渡效果 */
 </style>
