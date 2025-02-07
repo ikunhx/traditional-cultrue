@@ -4,7 +4,7 @@
     <div class="box">
       <router-view></router-view>
     </div>
-    <Login></Login>
+    <!-- <Login></Login> -->
     <!-- <SwitchBtn></SwitchBtn> -->
     <!-- <SignUp></SignUp> -->
   </div>
