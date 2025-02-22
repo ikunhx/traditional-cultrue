@@ -4,7 +4,13 @@ const path = require('path');
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
+  devServer: {
+    client: {
 
+      overlay: false//关掉报错===没有报错
+
+    },
+  },
   // 使用 configureWebpack 来添加或覆盖 Webpack 配置
   configureWebpack: {
     module: {

@@ -14,6 +14,7 @@
 <script>
 import Loading from "./components/Loading.vue";
 import Login from "./pages/Login.vue";
+
 export default {
   name: "App",
   data() {
@@ -35,25 +36,38 @@ export default {
         console.log("####");
       }
     },
-    LoginShow(name) {
-      if(this.$route.path!=='/Login'){
-        this.$router.push({
-          name: name,
-        });
-      }
-    },
-    SignUpShow(name) {
-      if(this.$route.path!=='/SignUp'){
-        this.$router.push({
-          name: name,
-        });
-      }
-    },
+    showPage(name) {
+    console.log(name);
+    if (this.$route.path !== '/' + name) {
+      this.$router.push({
+        name: name,
+      });
+    }
+  },
+    // LoginShow(name) {
+    //   if(this.$route.path!=='/Login'){
+    //     this.$router.push({
+    //       name: name,
+    //     });
+    //   }
+    // },
+    // SignUpShow(name) {
+    //   if(this.$route.path!=='/SignUp'){
+    //     this.$router.push({
+    //       name: name,
+    //     });
+    //   }
+    // },
   },
   mounted() {
     this.$bus.$on("c-home", this.homeShow);
-    this.$bus.$on("c-Login", this.LoginShow);
-    this.$bus.$on("c-SignUp", this.SignUpShow);
+    this.$bus.$on("c-Login", (name) => this.showPage(name));
+    this.$bus.$on("c-SignUp", (name) => this.showPage(name));
+    this.$bus.$on("c-Cixiu", (name) => this.showPage(name));
+    this.$bus.$on("c-Hanfu", (name) => this.showPage(name));
+    this.$bus.$on("c-Jingjv", (name) => this.showPage(name));
+    this.$bus.$on("c-Rujia", (name) => this.showPage(name));
+    this.$bus.$on("c-Zhongyi", (name) => this.showPage(name));
 
   },
 };
@@ -61,4 +75,8 @@ export default {
 
 <style>
 /* 定义进入和离开的过渡效果 */
+*{
+  margin: 0;
+  padding: 0;
+}
 </style>

@@ -12,7 +12,7 @@
         ref="faceBox"
         :class="{ 'faceBox-up': isFaceBoxChange }"
       >
-        <div class="face-title">
+        <div class="first-face-title">
           <p>中华文化</p>
         </div>
         <div class="face-text">
@@ -177,7 +177,9 @@
           <div class="color-name">
             <p class="p-name">{{ nowColor.name }}</p>
             <p class="p-pinyin">{{ nowColor.pinyin }}</p>
-            <p class="p-pinyin">{{ nowColor.code ? '#' + nowColor.code : '#ddd' }}</p>
+            <p class="p-pinyin">
+              {{ nowColor.code ? "#" + nowColor.code : "#ddd" }}
+            </p>
           </div>
           <div class="color-img">
             <img src="@/assets/image/Home/03bck.png" alt="" />
@@ -189,7 +191,190 @@
         </div>
       </div>
     </div>
-    <div class="third-box"></div>
+    <div class="third-box" ref="thirdBox">
+      <div
+        class="third-top-left"
+        :style="{ transform: `translateY(${topLeftOffset}vh)` }"
+      >
+        <span>传</span>
+      </div>
+      <div
+        class="third-top-right"
+        :style="{ transform: `translateY(${topRightOffset}vh)` }"
+      >
+        <span>统</span>
+        <img
+          src="https://news.cgtn.com/event/2022/The-Song-Painted/style/img/introduceFloat02.png"
+          @click="thirdNext"
+          class="third-click-btn-next"
+        />
+      </div>
+
+      <div class="third-bottom">
+        <img
+          src="https://news.cgtn.com/event/2022/The-Song-Painted/style/img/introduceFloat02.png"
+          @click="thirdLast"
+          class="third-click-btn-last"
+          v-if="showBtn"
+        />
+
+        <div class="third-bottom-title">
+          <div style="width: 20vw;height: 5vh;"></div>
+          <h2>千年文化韵，流转在今朝</h2>
+        </div>
+        <div class="third-bottom-contain">
+          <div class="third-bottom-contain-left">
+            <div class="video-box" @click="showVideo(0)">
+              <div class="video-face">
+                <div class="face-img">
+                  <img src="@/assets/image/Home/gh.png" alt="" />
+                </div>
+                <div class="face-title">
+                  <h2>国画</h2>
+                  <p>
+                    国画是中国的传统绘画形式，是用毛笔蘸水、墨、彩作画于绢或纸上
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="video-box" @click="showVideo(2)">
+              <div class="video-face">
+                <div class="face-img">
+                  <img src="@/assets/image/Home/cq.png" alt="" />
+                </div>
+                <div class="face-title">
+                  <h2>瓷器</h2>
+                  <p>中国是瓷器的故乡，瓷器是古代劳动人民的一个重要的创造</p>
+                </div>
+              </div>
+            </div>
+            <div class="video-box" @click="showVideo(1)">
+              <div class="video-face">
+                <div class="face-img">
+                  <img src="@/assets/image/Home/sc.png" alt="" />
+                </div>
+                <div class="face-title">
+                  <h2>丝绸</h2>
+                  <p>
+                    丝绸是中国的特产，中国古代劳动人民发明并大规模生产丝绸制品，更开启了世界历史上第一次东西方大规模的商贸交流，史称“丝绸之路”
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="video-box" @click="showVideo(3)">
+              <div class="video-face">
+                <div class="face-img">
+                  <img src="@/assets/image/Home/zy.png" alt="" />
+                </div>
+                <div class="face-title">
+                  <h2>中医</h2>
+                  <p>
+                    中医学有数千年的历史，是中华民族在长期的生产与生活实践中认识生命、维护健康、战胜疾病的宝贵经验总结，是中国传统文化的结晶
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="third-bottom-contain-right">
+            <div class="third-bottom-right-son1">
+              <div class="son-box" @click="changePage('Jingjv')">
+                <div class="son-box-img">
+                  <img src="@/assets/image/Home/jj.png" alt="" />
+                </div>
+                <div class="son-box-text">
+                  <h2>京剧</h2>
+                  <p>
+                    京剧是至今中国戏曲舞台上最具代表性、影响力的剧种，被誉为“国粹”
+                  </p>
+                </div>
+              </div>
+              <div class="cloud2">
+                <img src="@/assets/image/Home/cloud2.png" alt="" />
+              </div>
+              <div class="son-box" @click="changePage('Cixiu')">
+                <div class="son-box-img">
+                  <img src="@/assets/image/Home/syi.png" alt="" />
+                </div>
+                <div class="son-box-text">
+                  <h2>刺绣</h2>
+                  <p>
+                    刺绣是针和线在织物上的一种艺术，也是中国非物质文化遗产保护中最珍贵的物种之一
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="third-bottom-right-son2">
+              <div class="cloud1">
+                <img src="@/assets/image/Home/cloud1.png" alt="" />
+              </div>
+              <div class="cloud2 cloud21">
+                <img src="@/assets/image/Home/cloud2.png" alt="" />
+              </div>
+              <div class="cloud1">
+                <img src="@/assets/image/Home/cloud1.png" alt="" />
+              </div>
+            </div>
+            <div class="third-bottom-right-son3">
+              <div class="son-box" @click="changePage('Rujia')">
+                <div class="son-box-img">
+                  <img src="@/assets/image/Home/rj.png" alt="" />
+                </div>
+                <div class="son-box-text">
+                  <h2>儒家文化</h2>
+                  <p>
+                    儒家文化是以儒家学说为指导思想的文化流派，为历代儒客信众推崇
+                  </p>
+                </div>
+              </div>
+              <div class="cloud2">
+                <img src="@/assets/image/Home/cloud2.png" alt="" />
+              </div>
+              <div class="son-box" @click="changePage('Zhongyi')">
+                <div class="son-box-img">
+                  <img src="@/assets/image/Home/zyi.png" alt="" />
+                </div>
+                <div class="son-box-text">
+                  <h2>中医文化</h2>
+                  <p>
+                    中医具有完整的理论体系，其独特之处在于天人合一、天人相应的整体观及辨证论治
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="third-bottom-right-son4">
+              <div class="son4-box" @click="changePage('Hanfu')">
+                <div class="son4-box-img">
+                  <img src="@/assets/image/Home/hf.png" alt="" />
+                </div>
+                <div class="son4-box-text">
+                  <h2>汉服</h2>
+                  <p>
+                    汉服是中国“衣冠上国”“礼仪之邦”“锦绣中华”的体现，承载了中国的染织绣等杰出工艺和美学
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <el-drawer
+          title="video"
+          size="80%"
+          :visible.sync="isShowVideo"
+          :with-header="false"
+          class="tvBox"
+        >
+          <video
+            :src="nowVideo"
+            v-if="isShowVideo"
+            controls
+            fit="fill"
+            style="width: 100%; height: 100%"
+          ></video>
+        </el-drawer>
+      </div>
+    </div>
+
+    <div class="fourth-box" ref="fourthBox"></div>
   </div>
 </template>
 
@@ -205,6 +390,17 @@ export default {
       strokeWidth: 7,
       percentage100: 100,
       percentage10: 10,
+      topRightOffset: 0,
+      topLeftOffset: 0,
+      showBtn: false,
+      isShowVideo: false,
+      nowVideo: "",
+      videos: [
+        require("@/assets/video/guohua.mp4"), // 使用require确保路径被正确解析
+        require("@/assets/video/hanfu.mp4"),
+        require("@/assets/video/taoci.mp4"),
+        require("@/assets/video/zhongyi.mp4"),
+      ],
       nowColor: {
         name: "中国色",
         C: 0,
@@ -474,7 +670,7 @@ export default {
           name: "桔梗紫",
           C: 54,
           M: 89,
-          Y: 122,
+          Y: 12,
           K: 1,
           R: 19,
           G: 60,
@@ -486,7 +682,7 @@ export default {
           name: "凤信紫",
           C: 21,
           M: 37,
-          Y: 122,
+          Y: 12,
           K: 0,
           R: 200,
           G: 173,
@@ -1202,7 +1398,6 @@ export default {
           code: "b6a476",
           pinyin: "CHENHUI",
         },
-        
       ],
     };
   },
@@ -1262,6 +1457,31 @@ export default {
     changeColor(color) {
       this.nowColor = color;
     },
+
+    thirdNext() {
+      this.topLeftOffset -= 100;
+      this.topRightOffset += 100;
+      setTimeout(() => {
+        this.showBtn = true;
+      }, 480);
+    },
+    thirdLast() {
+      this.topLeftOffset += 100;
+      this.topRightOffset -= 100;
+      setTimeout(() => {
+        this.showBtn = false;
+      }, 100);
+    },
+    showVideo(index) {
+      // if (this.nowVideo === this.videos[index]) return; // 避免重复赋值
+      console.log("old:" + this.nowVideo);
+      this.isShowVideo = true;
+      this.nowVideo = this.videos[index];
+      console.log("now:" + this.nowVideo);
+    },
+    changePage(name){
+      this.$bus.$emit("c-"+name,name)
+    }
   },
 };
 </script>
@@ -1273,6 +1493,7 @@ export default {
   height: 100vh;
   /* 使用视口单位 */
   overflow: hidden;
+  background-image: url("@/assets/image/Home/02bck.png");
 }
 
 .header-image {
@@ -1302,7 +1523,7 @@ export default {
   transform: translateY(-100vh);
 }
 
-.face-title {
+.first-face-title {
   width: 100vw;
   height: 100vh;
   justify-content: center;
@@ -1313,7 +1534,7 @@ export default {
   /* background-color: aqua; */
 }
 
-.face-title p {
+.first-face-title p {
   font-weight: 800;
   font-size: 50px;
   letter-spacing: 20px;
@@ -1364,6 +1585,10 @@ export default {
   padding: 0;
   border: 0;
   outline: 0;
+  overflow: hidden;
+  position: relative;
+  background-color: #5c2223;
+  background-image: url("@/assets/image/Home/02bck.png");
 }
 .wrapper {
   position: relative;
@@ -1460,6 +1685,7 @@ export default {
   font-size: 750%;
   font-family: "xingshu", kaiti;
   margin-top: 10%;
+  margin-left: 7vw;
   writing-mode: vertical-rl; /* 文本从上到下、从右到左 */
 }
 .p-pinyin {
@@ -1507,7 +1733,7 @@ export default {
 .top-value {
   margin-top: 3px;
 }
-.wrapper-title{
+.wrapper-title {
   position: absolute;
   /* top: 10%; */
   right: 3%;
@@ -1516,13 +1742,288 @@ export default {
   text-align: center;
   /* background-color: aqua; */
 }
-.wrapper-title span{
+.wrapper-title span {
   /* display: block; */
-  font-family: 'xingshu',kaiti;
+  font-family: "xingshu", kaiti;
   font-size: 130px;
   margin-top: 80px;
   margin-right: 80px;
   color: #fff;
   writing-mode: vertical-lr;
+}
+
+.third-bottom {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  /* background-color: #202020; */
+  background-image: url("@/assets/image/Home/02bck.png");
+}
+.third-top-left,
+.third-top-right {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  color: #5c2223;
+  background-color: #202020;
+  background-image: url("@/assets/image/Home/02bck.png");
+  font-size: 500px;
+  font-family: "xingshu", kaiti;
+  position: absolute;
+  transition: 0.7s;
+  /* border: #fff 1px solid; */
+  z-index: 10;
+}
+.third-top-left {
+  top: 0;
+  left: 0;
+}
+.third-top-right {
+  top: 0;
+  right: 0;
+}
+.third-top-left span,
+.third-top-right span {
+  position: absolute;
+  /* background-color: #fff; */
+  top: 20%;
+  right: 20%;
+}
+.fourth-box {
+  width: 100vw;
+  height: 100vh;
+}
+.third-click-btn-next {
+  width: 60px;
+  position: absolute;
+  /* background-color: #fff; */
+  bottom: 10%;
+  right: 20%;
+  cursor: pointer;
+  /* transition: 0.5s; */
+  animation: img-breath 2.5s linear infinite;
+}
+.third-click-btn-last {
+  width: 60px;
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  margin-top: -95vh;
+  margin-left: 3.5vw;
+  cursor: pointer;
+  transition: 0.7s;
+  animation: img-breath 2.5s linear infinite;
+}
+
+@keyframes img-breath {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.third-bottom-contain {
+  width: 100vw;
+  height: 85vh;
+}
+.third-bottom-title {
+  width: 80vw;
+  height: 15vh;
+  /* background-color: aqua; */
+  margin-left: 12vw;
+  text-align: center;
+}
+.third-bottom-title h2{
+  font-family: kaiti;
+  font-size: 60px;
+  /* background-color: beige; */
+  display: block;
+  color: #fff;
+  letter-spacing: 15px;
+}
+.third-bottom-contain-left {
+  width: 16vw;
+  height: 83vh;
+  /* background-color: palegoldenrod; */
+  margin-left: 1vw;
+  margin-top: -2vh;
+}
+
+.video-box {
+  width: 100%;
+  height: 22%;
+  /* background-color: aqua; */
+  margin-top: 2.5vh;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.video-face {
+  width: 16vw;
+  height: 18.26vh;
+  overflow: hidden;
+  transition: 0.5s;
+  /* background-color: red; */
+  position: absolute;
+  z-index: 0;
+  border-radius: 8px;
+}
+.video-face:hover {
+  transform: scale(1.1);
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.face-img img {
+  width: 16vw;
+  height: 18.26vh;
+  border-radius: 8px;
+}
+.face-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+}
+.face-title h2 {
+  font-size: 18px;
+  font-family: kaiti;
+  margin-bottom: 10px;
+  transform: translateY(200px);
+  transition: 0.5s;
+}
+.video-face:hover .face-title h2 {
+  transform: translate(0);
+  transition-delay: 0.3s;
+}
+.face-title p {
+  font-size: 13px;
+  font-weight: 300;
+  font-family: kaiti;
+  line-height: 20px;
+  white-space: 2px;
+  transform: translateY(250px);
+  letter-spacing: 2px;
+  transition: 0.5s;
+}
+.video-face:hover .face-title p {
+  transform: translateY(0);
+  transition-delay: 0.15s;
+}
+.third-bottom-contain-right {
+  width: 80vw;
+  height: 82.2vh;
+  background-color: rgba(33, 1, 1, 0.65);
+  margin-left: 18vw;
+  margin-top: -83vh;
+  border-radius: 5px;
+  display: flex;
+}
+.third-bottom-right-son1,
+.third-bottom-right-son2,
+.third-bottom-right-son3,
+.third-bottom-right-son4 {
+  width: 19.5vw;
+  height: 77vh;
+  margin-left: 20px;
+  margin-top: 19px;
+  /* background-color: aqua; */
+  font-family: kaiti;
+}
+.third-bottom-right-son2 {
+  width: 15vw;
+  margin-left: 5px;
+}
+.third-bottom-right-son3 {
+  margin-left: 5px;
+}
+.third-bottom-right-son4 {
+  width: 22vw;
+}
+.son-box {
+  width: 19.5vw;
+  height: 30.5vh;
+  /* background-color: blueviolet; */
+  transition: 0.5s;
+  cursor: pointer;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+}
+.son-box:hover,.son4-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
+}
+.cloud2 {
+  width: 15vw;
+  height: 13vh;
+  /* background-color: rgb(15, 15, 11); */
+}
+.cloud2 img {
+  transform: scaleX(-1);
+  float: right;
+  margin-right: -1.5vw;
+  margin-top: 1vh;
+  height: 11vh;
+}
+.cloud21 img {
+  margin-right: 1.3vw;
+}
+.cloud1 {
+  width: 15vw;
+  height: 31.5vh;
+  /* background-color: rgb(77, 77, 12); */
+}
+.cloud1 img {
+  height: 14vh;
+  margin-top: 6.5vh;
+  margin-left: 3vw;
+}
+.son-box-img img {
+  width: 19.5vw;
+  height: 21.6vh;
+}
+.son-box h2,
+.son-box p {
+  display: block;
+}
+.son-box h2 {
+  color: #fff;
+  font-size: 20px;
+  margin: 2px;
+}
+.son-box p {
+  color: #fff;
+  font-size: 16px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.son4-box {
+  width: 22vw;
+  height: 75vh;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.son4-box-img img {
+  width: 22vw;
+  height: 63vh;
+}
+.son4-box-text h2 {
+  color: #fff;
+  font-size: 20px;
+  margin: 5px;
+}
+.son4-box-text p {
+  color: #fff;
+  font-size: 16px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 </style>
