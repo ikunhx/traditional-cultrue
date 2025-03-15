@@ -28,7 +28,17 @@
   <script>
   export default {
     name: "Cixiu",
-   
+    beforeRouteEnter(to, from, next) {
+    // 在渲染该组件的对应路由被 confirm 前调用
+    // 不能获取组件实例 `this` - 因为当守卫执行时，组件实例还没被创建
+    next(vm => {
+      // 通过 `vm` 访问组件实例
+      console.log('From path:', from.path);
+    });
+  },
+  created() {
+    console.log('From path in created hook:', this.$route.from);
+  }
   }
   </script>
   

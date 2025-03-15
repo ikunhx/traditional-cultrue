@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <!-- <Loading class="Loading"/> -->
+      
+       <Loading class="Loading"/>
     <div class="box">
       <router-view></router-view>
     </div>
+    <!-- <FloatBall></FloatBall> -->
+    <!-- <CandyMan></CandyMan> -->
     <!-- <Login></Login> -->
     <!-- <SwitchBtn></SwitchBtn> -->
-    <!-- <SignUp></SignUp> -->
+    <SignUp></SignUp>
      
   </div>
 </template>
@@ -14,7 +17,8 @@
 <script>
 import Loading from "./components/Loading.vue";
 import Login from "./pages/Login.vue";
-
+import CandyMan from "./components/CandyMan.vue";
+import FloatBall from "./components/FloatBall.vue";
 export default {
   name: "App",
   data() {
@@ -22,9 +26,12 @@ export default {
       isLoading: true,
     };
   },
+
   components: {
     Loading,
     Login,
+    CandyMan,
+    FloatBall
   },
   methods: {
     homeShow(name) {
@@ -44,20 +51,6 @@ export default {
       });
     }
   },
-    // LoginShow(name) {
-    //   if(this.$route.path!=='/Login'){
-    //     this.$router.push({
-    //       name: name,
-    //     });
-    //   }
-    // },
-    // SignUpShow(name) {
-    //   if(this.$route.path!=='/SignUp'){
-    //     this.$router.push({
-    //       name: name,
-    //     });
-    //   }
-    // },
   },
   mounted() {
     this.$bus.$on("c-home", this.homeShow);

@@ -1,5 +1,5 @@
 <template>
-    <div class="loading-number" :class="{ 'fade-out': !isLoading }" v-if="isLoading || isFading">
+    <div class="loading-number" :class="{ 'fade-out': !isLoading }" v-if="isLoading">
       <div class="number-container">
         <span :style="{ color: textColor }" class="text">{{ getGanZhi(progress) }}</span>
       </div>
@@ -73,7 +73,7 @@ export default {
 };
 </script>
   
-  <style scoped>
+  <style>
 .loading-number {
   position: fixed;
   top: 0;
@@ -91,13 +91,16 @@ export default {
 }
 
 .number-container {
-  font-size: 4em;
-  font-weight: 400;
 }
 .text {
   transition: all 0.1s ease-in-out;
   font-family: kaiti;
   letter-spacing: 40px;
+  font-size: 4em;
+   font-weight: 400;
+ /* margin-top: 50vh;
+  margin-left: 50vw;
+  transform: translate(-50%,-50%); */
 }
 .poem {
   position: absolute;

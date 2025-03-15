@@ -46,13 +46,15 @@
             <div :id="[isChange ? 'beam-c' : 'beam']" ref="beam"></div>
           </div>
         </div>
-        <button :class="[isChange ? 'submit-c' : 'submit']">Sign up</button>
+        <button :class="[isChange ? 'submit-c' : 'submit']" @click="signUp">Sign up</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// import { sign } from 'core-js/core/number';
+
 export default {
   name: "SignUp",
   data() {
@@ -78,6 +80,33 @@ export default {
     },
     handelChange(){
       this.$bus.$emit("c-Login",'Login')
+    },
+    signUp(){
+      const formData={
+          account:this.account,
+          password:this.password
+        }
+        console.log(formData);
+        if(formData.account===''){
+          this.$message.error('账号不能为空');
+        }
+        else if(formData.password===''){
+          this.$message.error('密码不能为空');
+        }else{
+          axios
+          .post(
+            "http://localhost:8080/traditional-cultrue/user/register",
+            formData,
+          )
+          .then((response) => {
+            this.$store.dispatch("setToken", response.data.data.token);
+            this.$message(response.message);
+          })
+          .catch((error) => {
+            this.$message.error(error.message);
+           
+          });
+        }
     }
   },
   mounted() {
@@ -92,6 +121,7 @@ export default {
       let degrees = rad * (20 / Math.PI) * -1 - 350;
       beam.style.transform = `translateY(-50%) rotate(${degrees}deg)`;
     });
+   
   },
 };
 </script>

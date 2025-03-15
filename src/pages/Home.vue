@@ -374,11 +374,21 @@
       </div>
     </div>
 
-    <div class="fourth-box" ref="fourthBox"></div>
+    <div class="fourth-box" ref="fourthBox">
+      <div class="mapBox">
+        <div id="allmap"></div>
+      </div>
+      <div class="cultureBox">
+        <p>现在的城市是{{ cityName }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+
+import allProvinceBoundaries from '@/assets/json/all-province-boundaries.json';
+import allCityBoundaries from '@/assets/json/all-city-boundaries.json';
 export default {
   name: "Home",
   data() {
@@ -390,11 +400,17 @@ export default {
       strokeWidth: 7,
       percentage100: 100,
       percentage10: 10,
-      topRightOffset: 0,
-      topLeftOffset: 0,
-      showBtn: false,
+      topRightOffset: parseFloat(sessionStorage.getItem('topRightOffset')) || 0,
+      topLeftOffset: parseFloat(sessionStorage.getItem('topLeftOffset')) || 0,
+      showBtn: sessionStorage.getItem('showBtn') === 'true', // 初始化 showBtn 状态
       isShowVideo: false,
       nowVideo: "",
+      cityName:'',
+      provinceFillLayer: null,
+      cityBoundaryLayer: null,
+      highlightedPolygon: null,
+      cityData: allCityBoundaries, // 直接导入城市边界数据
+
       videos: [
         require("@/assets/video/guohua.mp4"), // 使用require确保路径被正确解析
         require("@/assets/video/hanfu.mp4"),
@@ -1399,15 +1415,66 @@ export default {
           pinyin: "CHENHUI",
         },
       ],
+      provinceColors:{
+            "北京市": "#DAF7A6",
+            "天津市": "#DAF7A6",
+            "河北省": "#DAF7A6",
+            "山西省": "#FFC300",
+            "内蒙古自治区": "#FF5733",
+            "辽宁省": "#33FFF6",
+            "吉林省": "#33FFF6",
+            "黑龙江省": "#33FFF6",
+            "上海市": "#DAF7A6",
+            "江苏省": "#DAF7A6",
+            "浙江省": "#DAF7A6",
+            "安徽省": "#FFC300",
+            "福建省": "#DAF7A6",
+            "江西省": "#FFC300",
+            "山东省": "#DAF7A6",
+            "河南省": "#FFC300",
+            "湖北省": "#FFC300",
+            "湖南省": "#FFC300",
+            "广东省": "#DAF7A6",
+            "广西壮族自治区": "#FF5733",
+            "海南省": "#DAF7A6",
+            "重庆市": "#FF5733",
+            "四川省": "#FF5733",
+            "贵州省": "#FF5733",
+            "云南省": "#FF5733",
+            "西藏自治区": "#FF5733",
+            "陕西省": "#FF5733",
+            "甘肃省": "#FF5733",
+            "青海省": "#FF5733",
+            "宁夏回族自治区": "#FF5733",
+            "新疆维吾尔自治区": "#FF5733"
+        },
+
     };
   },
-  mounted() {
+  created() {
+    // 页面创建时，从 sessionStorage 加载数据
+    this.topRightOffset = parseFloat(sessionStorage.getItem('topRightOffset')) || 0;
+    this.topLeftOffset = parseFloat(sessionStorage.getItem('topLeftOffset')) || 0;
+    this.showBtn = sessionStorage.getItem('showBtn') === 'true'; // 恢复 showBtn 状态
+  },
+  async mounted() {
+    try {
+      await this.loadBMapGL();
+      await this.initMap(); // 确保顺序执行
+    } catch (error) {
+      console.error('地图初始化失败:', error);
+      // 可在此处添加错误提示
+    }
+
     this.setupMouseEvents();
   },
   beforeDestroy() {
     this.cleanupMouseEvents();
+    if (this.map) this.map.destroy(); // 明确销毁地图实例
   },
   methods: {
+   
+
     setupMouseEvents() {
       const headerImage = this.$refs.headerImage;
       const firstBox = this.$refs.firstBox;
@@ -1461,15 +1528,26 @@ export default {
     thirdNext() {
       this.topLeftOffset -= 100;
       this.topRightOffset += 100;
+      
+      // 更新 sessionStorage
+      sessionStorage.setItem('topLeftOffset', this.topLeftOffset);
+      sessionStorage.setItem('topRightOffset', this.topRightOffset);
+
       setTimeout(() => {
         this.showBtn = true;
+        sessionStorage.setItem('showBtn', this.showBtn); // 更新 showBtn 状态到 sessionStorage
       }, 480);
     },
     thirdLast() {
       this.topLeftOffset += 100;
       this.topRightOffset -= 100;
+
+      // 更新 sessionStorage
+      sessionStorage.setItem('topLeftOffset', this.topLeftOffset);
+      sessionStorage.setItem('topRightOffset', this.topRightOffset);
       setTimeout(() => {
         this.showBtn = false;
+        sessionStorage.setItem('showBtn', this.showBtn); // 更新 showBtn 状态到 sessionStorage
       }, 100);
     },
     showVideo(index) {
@@ -1481,12 +1559,129 @@ export default {
     },
     changePage(name){
       this.$bus.$emit("c-"+name,name)
+    },
+    async loadBMapGL() {
+      return new Promise((resolve, reject) => {
+        if (window.BMapGL) {
+          resolve();
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://api.map.baidu.com/api?type=webgl&v=1.0&ak=FKauit31L7Y5Fl6uJY66t9lP1zfsasYi&callback=initBMapGL';
+        script.onerror = (err) => {
+          reject(new Error('加载百度地图失败'));
+        };
+
+        window.initBMapGL = () => {
+          resolve();
+          delete window.initBMapGL;
+        };
+
+        document.head.appendChild(script);
+      });
+    },
+
+    async initMap() {
+      if (!window.BMapGL) throw new Error('BMapGL未加载');
+      
+      const map = new BMapGL.Map('allmap');
+      const point = new BMapGL.Point(103.834, 36.061);
+      map.centerAndZoom(point, 5);
+      map.enableScrollWheelZoom(true);
+
+      // 将地理编码和点击事件移到此处
+      const geoc = new BMapGL.Geocoder();
+      map.addEventListener('click', (e) => {
+        const pt = e.latlng;
+        geoc.getLocation(pt, (rs) => {
+          const addComp = rs.addressComponents;
+          const cityName = addComp.city || addComp.district;
+          this.cityName=cityName;
+          console.log("点击的是"+this.cityName);
+          
+          if (cityName) this.highlightCity(cityName);
+        });
+      });
+
+      this.map = map;
+      
+      // 确保地图初始化后再加载数据
+      await this.getAllProvincesBoundaries(allProvinceBoundaries);
+      await this.getAllCityBoundaries(allCityBoundaries);
+    },
+    getAllProvincesBoundaries(provinceData) {
+      this.addFillLayer(provinceData);
+    },
+
+    addFillLayer(provinceData) {
+      this.provinceFillLayer = new BMapGL.FillLayer({
+        crs: 'GCJ02',
+        style: {
+          fillColor: ['match', ['get', 'name'], ...Object.entries(this.provinceColors).flatMap(([key, value]) => [key, value]), '#ccc'],
+          fillOpacity: 0.5,
+          strokeWeight: 2,
+          strokeColor: 'black'
+        },
+        zIndex: 2
+      });
+
+      this.provinceFillLayer.setData(provinceData);
+      this.map.addNormalLayer(this.provinceFillLayer);
+    },
+
+    getAllCityBoundaries(cityData) {
+      this.drawCityBoundaries(cityData);
+    },
+
+    drawCityBoundaries(data) {
+      const lineLayer = new BMapGL.LineLayer({
+        crs: 'GCJ02',
+        style: {
+          lineWidth: 0.5,
+          lineDasharray: [4, 4],
+          lineCap: 'butt',
+          lineJoin: 'miter',
+          lineColor: '#000'
+        },
+        zIndex: 1
+      });
+      lineLayer.setData(data);
+      this.map.addNormalLayer(lineLayer);
+    },
+
+    highlightCity(cityName) {
+      if (this.highlightedPolygon !== null) {
+        this.map.clearOverlays();
+      }
+
+      const feature = this.cityData.features.find(feature => feature.properties.name === cityName);
+      if (feature) {
+        this.drawHighlightedCityBoundary(feature);
+      }
+    },
+
+    drawHighlightedCityBoundary(feature) {
+      const coordinates = feature.geometry.coordinates;
+      const polygons = coordinates.map(polygonCoords => polygonCoords[0].map(point => new BMapGL.Point(point[0], point[1])));
+
+      polygons.forEach(points => {
+        this.highlightedPolygon = new BMapGL.Polygon(points, {
+          strokeColor: "red",
+          strokeWeight: 2,
+          strokeOpacity: 1,
+          fillColor: "rgba(255, 0, 0, 0.35)",
+          fillOpacity: 0.35
+        });
+        this.map.addOverlay(this.highlightedPolygon);
+      });
     }
   },
 };
 </script>
 
-<style lang="css" scoped>
+<style  scoped>
+
 .first-box {
   position: relative;
   width: 100vw;
@@ -1789,10 +1984,7 @@ export default {
   top: 20%;
   right: 20%;
 }
-.fourth-box {
-  width: 100vw;
-  height: 100vh;
-}
+
 .third-click-btn-next {
   width: 60px;
   position: absolute;
@@ -2025,5 +2217,22 @@ export default {
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
+}
+.fourth-box {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+.mapBox{
+  width: 50vw;
+  height: 100vh;
+}
+#allmap {
+  width: 100%;
+  height: 100%;
+}
+.cultureBox{
+  width: 50vw;
+  height: 100vh;
 }
 </style>

@@ -40,7 +40,7 @@
           </div>
          
           <div class="item">
-            <button class="loginBtn">登录</button>
+            <button class="loginBtn" @click="login">登录</button>
             <button class="signBtn" @click="handleChange">注册</button>
           </div>
         </div>
@@ -51,6 +51,8 @@
 </template>
   
   <script>
+import axios from 'axios';
+
 export default {
   name: "Login",
   data() {
@@ -71,16 +73,49 @@ export default {
     handleChange(){
       this.$bus.$emit("c-SignUp",'SignUp')
     },
+    
     handleInput() {
         // 这里可以根据需要添加额外的逻辑
         // console.log("Switch toggled:", this.isOpen);
       },
+      login(){
+        const formData={
+          account:this.account,
+          password:this.password
+        }
+        console.log(formData);
+        if(formData.account===''){
+          this.$message.error('账号不能为空');
+        }
+        else if(formData.password===''){
+          this.$message.error('密码不能为空');
+        }else{
+          axios
+          .post(
+            "http://localhost:8080/traditional-cultrue/user/login",
+            formData,
+          )
+          .then((response) => {
+            this.$store.dispatch("setToken", response.data.data.token);
+            this.$message(response.message);
+          })
+          .catch((error) => {
+            this.$message.error(error.message);
+           
+          });
+        }
+       
+      }
   },
   // beforeDestroy
 };
 </script>
   
 <style scoped>
+.box{
+  height: 100vh;
+  width: 100vw;
+}
 .login {
     display: flex;
     align-items: center;
@@ -102,9 +137,9 @@ export default {
 .card::after {
   content: "";
   position: absolute;
-  top: 66%;
+  top: 79%;
   left: 0;
-  height: 100%;
+  height: 180px;
   width: 100%;
   background-color: #fff;
   filter: blur(2em);
@@ -134,7 +169,7 @@ export default {
 .content .icon {
     position: absolute;
     left: 8px;
-    top: 22px;
+    top: 8px;
     width: 20px;
     height: 20px;
 }

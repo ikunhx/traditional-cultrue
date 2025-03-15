@@ -8,7 +8,7 @@ import Hanfu from '@/pages/introduction/Hanfu.vue';
 import Jingjv from '@/pages/introduction/Jingjv.vue';
 import Rujia from '@/pages/introduction/Rujia.vue';
 import Zhongyi from '@/pages/introduction/Zhongyi.vue';
-
+import CandyMan from '@/components/CandyMan.vue';
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -18,9 +18,9 @@ const router = new VueRouter({
             component: Home,
         },
         {
-            path: '/Home',
+            path: '/home',
             component: Home,
-            name: 'Home'
+            name: 'home'
         },
         {
             path: '/SignUp',
@@ -56,6 +56,11 @@ const router = new VueRouter({
             path: '/Zhongyi',
             component: Zhongyi,
             name: 'Zhongyi'
+        },
+        {
+            path: '/CandyMan',
+            component: CandyMan,
+            name: 'CandyMan'
         },
 
     ]

@@ -16,18 +16,26 @@ module.exports = defineConfig({
     module: {
       rules: [
         {
-          test: /\.scss$/,
+          test: /\.less$/,
           use: [
             'vue-style-loader',
             'css-loader',
-            'sass-loader'
+            'less-loader'
           ]
-        },
+        }
         // 其他规则...
       ]
     }
   },
-
+  // chainWebpack: config => {
+  //   // 确认json loader配置
+  //   config.module
+  //     .rule('json')
+  //     .test(/\.json$/)
+  //     .use('json-loader')
+  //     .loader('json-loader')
+  //     .end();
+  // },
   // 插件选项
   pluginOptions: {
     'style-resources-loader': {
