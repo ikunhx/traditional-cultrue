@@ -52,7 +52,7 @@
   
   <script>
 import axios from 'axios';
-
+// import vueConfig from 'vue.config';
 export default {
   name: "Login",
   data() {
@@ -81,7 +81,7 @@ export default {
       login(){
         const formData={
           account:this.account,
-          password:this.password
+          password:this.password,
         }
         console.log(formData);
         if(formData.account===''){
@@ -92,7 +92,7 @@ export default {
         }else{
           axios
           .post(
-            "http://localhost:8080/traditional-cultrue/user/login",
+            `${this.$baseUrl}user/login`,
             formData,
           )
           .then((response) => {
@@ -169,7 +169,7 @@ export default {
 .content .icon {
     position: absolute;
     left: 8px;
-    top: 8px;
+    top: 20px;
     width: 20px;
     height: 20px;
 }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支持交互的文字显示</title>
+    <style>
+         .char {
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="answer"></div>
+    <button id="pauseButton">暂停</button>
+    <button id="continueButton">继续</button>
+    <button id="resetButton">重置</button>
+    <script>
+        const answerText = "这是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本";
+        const answerElement = document.getElementById('answer');
+        let index = 0;
+        let speed = 100; // 默认速度
+
+// 根据文本长度调整速度
+if (answerText.length > 100) {
+    speed = 50;
+}
+
+        let isPaused = false;
+        let timer;
+
+        function displayNextCharacter() {
+            if (!isPaused && index < answerText.length) {
+                answerElement.classList.add('char');
+                answerElement.textContent += answerText[index];
+                setTimeout(() => {
+                    answerElement.style.opacity = 1;
+                }, speed);
+                index++;
+                timer = setTimeout(displayNextCharacter, speed);
+            }
+        }
+
+        const pauseButton = document.getElementById('pauseButton');
+        const continueButton = document.getElementById('continueButton');
+        const resetButton = document.getElementById('resetButton');
+
+        pauseButton.addEventListener('click', () => {
+            isPaused = true;
+        });
+
+        continueButton.addEventListener('click', () => {
+            isPaused = false;
+            displayNextCharacter();
+        });
+
+        resetButton.addEventListener('click', () => {
+            isPaused = false;
+            index = 0;
+            answerElement.textContent = '';
+            displayNextCharacter();
+        });
+
+        displayNextCharacter();
+    </script>
+</body>
+
+</html>

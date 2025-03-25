@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     topRightOffset: 0,
     topLeftOffset: 0,
-    
+    avatar:'http://localhost:8080/img/ai.d3e17c3d.gif',    
     token:'',
   },
   mutations: {

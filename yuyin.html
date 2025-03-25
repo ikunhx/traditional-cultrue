@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Input Effect</title>
+    <style>
+        #voice-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            overflow: hidden; /* 防止声纹超出圆形 */
+        }
+
+        .sound-wave {
+            width: 5px;
+            height: 10px;
+            background-color: #007BFF;
+            margin: 0 2px;
+            transition: height 0.2s ease; /* 增加过渡时间 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="voice-icon">
+        <div class="sound-wave"></div>
+        <div class="sound-wave"></div>
+        <div class="sound-wave"></div>
+        <div class="sound-wave"></div>
+        <div class="sound-wave"></div>
+    </div>
+
+    <script>
+        const voiceIcon = document.getElementById('voice-icon');
+        const soundWaves = document.querySelectorAll('.sound-wave');
+        let audioContext;
+        let analyser;
+        let source;
+        let previousVolumes = new Array(soundWaves.length).fill(0); // 存储上一次的音量数据
+        const centerIndex = Math.floor(soundWaves.length / 2); // 中间声纹的索引
+
+        voiceIcon.addEventListener('click', async () => {
+            try {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                source = audioContext.createMediaStreamSource(stream);
+                analyser = audioContext.createAnalyser();
+                source.connect(analyser);
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+
+                function updateSoundWaves() {
+                    analyser.getByteFrequencyData(dataArray);
+                    const averageVolume = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
+                    soundWaves.forEach((wave, index) => {
+                        const volume = dataArray[index] || averageVolume;
+                        // 平滑音频数据
+                        const smoothedVolume = previousVolumes[index] * 0.8 + volume * 0.2;
+                        previousVolumes[index] = smoothedVolume;
+
+                        // 降低灵敏度
+                        const sensitivity = 2; 
+                        const adjustedVolume = smoothedVolume / sensitivity;
+
+                        // 从中间往两边递减，调整衰减因子计算方式
+                        const distanceFromCenter = Math.abs(index - centerIndex);
+                        const maxDistance = Math.max(centerIndex, soundWaves.length - 1 - centerIndex);
+                        const attenuationFactor = 1 - (distanceFromCenter / (maxDistance + 1));
+
+                        const finalVolume = adjustedVolume * attenuationFactor;
+
+                        // 限制声纹高度的变化范围
+                        const minHeight = 10;
+                        const maxHeight = 45; 
+                        const limitedVolume = Math.min(Math.max(finalVolume, minHeight), maxHeight);
+
+                        wave.style.height = `${limitedVolume}px`;
+                    });
+                    requestAnimationFrame(updateSoundWaves);
+                }
+
+                updateSoundWaves();
+            } catch (error) {
+                console.error('Error accessing microphone:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>
+    

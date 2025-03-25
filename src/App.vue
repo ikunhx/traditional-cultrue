@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       
-       <Loading class="Loading"/>
+       <!-- <Loading class="Loading"/> -->
     <div class="box">
       <router-view></router-view>
     </div>
@@ -9,7 +9,7 @@
     <!-- <CandyMan></CandyMan> -->
     <!-- <Login></Login> -->
     <!-- <SwitchBtn></SwitchBtn> -->
-    <SignUp></SignUp>
+    <!-- <SignUp></SignUp> -->
      
   </div>
 </template>

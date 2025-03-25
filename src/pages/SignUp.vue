@@ -95,7 +95,7 @@ export default {
         }else{
           axios
           .post(
-            "http://localhost:8080/traditional-cultrue/user/register",
+            `${this.$baseUrl}user/register`,
             formData,
           )
           .then((response) => {
