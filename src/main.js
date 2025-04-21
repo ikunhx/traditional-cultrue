@@ -27,6 +27,26 @@ new Vue({
   router: router,
   beforeCreate() {
     Vue.prototype.$bus = this
-    Vue.prototype.$baseUrl='http://localhost:8080/traditional-culture/'
+    Vue.prototype.$baseUrl='http://121.40.221.40:998/'
   }
+});
+
+// 添加全局的 beforeunload 事件监听器
+document.addEventListener('DOMContentLoaded', function () {
+  // 设置一个唯一标识符以识别页面刷新
+  let pageSessionId = sessionStorage.getItem('pageSessionId');
+  
+  if (!pageSessionId) {
+    // 如果没有找到标识符，表示可能是新的会话或第一次加载
+    // 清除 token (可选)
+    store.commit('setToken', '');
+    store.commit('setAdmin', '');
+    
+    // 创建一个新的标识符并存入 sessionStorage
+    pageSessionId = 'session_' + new Date().getTime();
+    sessionStorage.setItem('pageSessionId', pageSessionId);
+  }
+  
+  // 检查是否有 token 需要恢复 (如果应用需要的话)
+  // 这里可以根据实际情况调整逻辑
 });

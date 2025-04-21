@@ -1,5 +1,6 @@
 <template>
-  <div class="container"><div class="box1">
+  <div class="container" ref="container">
+    <div class="box1">
       <p>
         <span>
           &nbsp;&nbsp;中医
@@ -30,7 +31,12 @@
   <script>
   export default {
     name: "Zhongyi",
-  
+    mounted(){
+    const chatContainer = this.$refs.container;
+          if (chatContainer) {
+            chatContainer.scrollTop = 0;
+          }
+  }
   }
   </script>
   

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" ref="container">
     <div class="box1">
       <p>
         <span>
@@ -38,7 +38,17 @@
   },
   created() {
     console.log('From path in created hook:', this.$route.from);
-  }
+  },
+  mounted() {
+  this.$nextTick(() => {
+    const chatContainer = this.$refs.container;
+    if (chatContainer) {
+      chatContainer.scrollTop = 0;
+      console.log(chatContainer.scrollTop);
+      
+    }
+  });
+}
   }
   </script>
   

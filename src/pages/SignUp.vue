@@ -45,6 +45,25 @@
             </button>
             <div :id="[isChange ? 'beam-c' : 'beam']" ref="beam"></div>
           </div>
+          <div class="form-item">
+          <label for="APIKEY" :class="[isChange ? 'Label-c' : 'Label']"
+            >APIKEY</label
+          >
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="apiKey"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              data-lpignore="true"
+              :class="[isChange ? 'input-c' : 'input']"
+              v-model="apiKey"
+              placeholder="选填"
+            />
+          </div>
+        </div>
         </div>
         <button :class="[isChange ? 'submit-c' : 'submit']" @click="signUp">Sign up</button>
       </div>
@@ -54,7 +73,8 @@
 
 <script>
 // import { sign } from 'core-js/core/number';
-
+import axios from 'axios';
+import Boss from './Boss.vue';
 export default {
   name: "SignUp",
   data() {
@@ -62,6 +82,8 @@ export default {
       isChange: false,
       account:'',
       password:'',
+      apiKey:''
+      
     };
   },
   computed: {
@@ -81,29 +103,52 @@ export default {
     handelChange(){
       this.$bus.$emit("c-Login",'Login')
     },
+    handleHome(){
+      this.$bus.$emit("c-home",'home')
+    },
+    handleBoss(){
+      this.$bus.$emit("c-Boss",'Boss')
+    },
     signUp(){
-      const formData={
-          account:this.account,
-          password:this.password
+      const Uesr={
+          username:this.account,
+          password:this.password,
+          apikey:this.apiKey
         }
-        console.log(formData);
-        if(formData.account===''){
+        console.log(Uesr);
+        if(Uesr.account===''){
           this.$message.error('账号不能为空');
         }
-        else if(formData.password===''){
+        else if(Uesr.password===''){
           this.$message.error('密码不能为空');
         }else{
           axios
           .post(
-            `${this.$baseUrl}user/register`,
-            formData,
+            `${this.$baseUrl}auth/register`,
+            Uesr,
           )
           .then((response) => {
+            if(response.data.msg=="该用户已存在")
+          {
+            this.$message(response.data.msg);
+          }
+          else{
             this.$store.dispatch("setToken", response.data.data.token);
-            this.$message(response.message);
+            this.$store.dispatch("setAdmin", response.data.data.admin);
+            if(response.data.data.admin==='1'){
+              this.handleHome();
+              console.log(4);
+              
+            }else{
+              console.log(2);
+              
+              this.handleBoss()
+            }
+            
+          }
           })
           .catch((error) => {
-            this.$message.error(error.message);
+             this.$message.error(error.message);
            
           });
         }

@@ -73,35 +73,58 @@ export default {
     handleChange(){
       this.$bus.$emit("c-SignUp",'SignUp')
     },
+
+    handleHome(){
+      this.$bus.$emit("c-home",'home')
+    },
+    handleBoss(){
+      this.$bus.$emit("c-Boss",'Boss')
+    },
     
     handleInput() {
         // 这里可以根据需要添加额外的逻辑
         // console.log("Switch toggled:", this.isOpen);
       },
       login(){
-        const formData={
-          account:this.account,
+        const user={
+          username:this.account,
           password:this.password,
         }
-        console.log(formData);
-        if(formData.account===''){
+        console.log(user);
+        if(user.account===''){
           this.$message.error('账号不能为空');
         }
-        else if(formData.password===''){
+        else if(user.password===''){
           this.$message.error('密码不能为空');
         }else{
           axios
           .post(
-            `${this.$baseUrl}user/login`,
-            formData,
+            `${this.$baseUrl}auth/login`,
+            user,
           )
           .then((response) => {
-            this.$store.dispatch("setToken", response.data.data.token);
-            this.$message(response.message);
+            this.$store.dispatch("setAdmin", response.data.msg);
+            this.$store.dispatch("setToken", response.data.data);
+            console.log(this.$store.state.token);
+            console.log(this.$store.state.admin);
+            if(this.$store.state.admin==='0'){
+              this.handleBoss()
+            }else{
+ this.handleHome();
+            }
+           
+            if(response.data.msg==="账号不存在"){
+              this.$message.error("账号不存在");
+            }else{
+              this.$message.success("登录成功！");
+            }
+            
+            console.log('res'+response.message);
+            
           })
           .catch((error) => {
             this.$message.error(error.message);
-           
+            console.log('error'+error.message);
           });
         }
        

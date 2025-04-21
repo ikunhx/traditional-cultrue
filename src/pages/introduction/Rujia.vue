@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" ref="container">
     <div class="box1">
       <p>
         <span>
@@ -30,7 +30,12 @@
   <script>
   export default {
     name: "Rujia",
-    
+    mounted(){
+    const chatContainer = this.$refs.container;
+          if (chatContainer) {
+            chatContainer.scrollTop = 0;
+          }
+  }
   }
   </script>
   

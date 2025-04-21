@@ -1,8 +1,17 @@
 <template>
   <div class="container">
     <div class="first-box" ref="firstBox">
-      <img src="@/assets/image/Home/01bck.png" alt="Header Image" class="header-image" ref="headerImage" />
-      <div class="faceBox" ref="faceBox" :class="{ 'faceBox-up': isFaceBoxChange }">
+      <img
+        src="@/assets/image/Home/01bck.png"
+        alt="Header Image"
+        class="header-image"
+        ref="headerImage"
+      />
+      <div
+        class="faceBox"
+        ref="faceBox"
+        :class="{ 'faceBox-up': isFaceBoxChange }"
+      >
         <div class="first-face-title">
           <p>中华文化</p>
         </div>
@@ -14,27 +23,67 @@
       </div>
     </div>
     <div class="second-box">
-      <div class="wrapper" :style="{
-        backgroundColor: nowColor.code ? '#' + nowColor.code : '#ddd',
-      }">
+      <div
+        class="wrapper"
+        :style="{
+          backgroundColor: nowColor.code ? '#' + nowColor.code : '#ddd',
+        }"
+      >
         <div class="color-box">
           <div class="color-list">
-            <div class="color-item" v-for="(color, index) in colors" :key="index"
-              :style="{ borderColor: '#' + color.code }" @click="changeColor(color)">
+            <div
+              class="color-item"
+              v-for="(color, index) in colors"
+              :key="index"
+              :style="{ borderColor: '#' + color.code }"
+              @click="changeColor(color)"
+            >
               <div class="color-top">
                 <div class="top-size">
-                  <el-progress type="circle" :show-text="false" :percentage="color.C" color="#fff" :width="width30"
-                    :stroke-width="strokeWidth" stroke-linecap="butt" class="top-value"
-                    define-back-color="rgba(255,255,255,0.2)"></el-progress>
-                  <el-progress type="circle" :show-text="false" :percentage="color.M" color="#fff" :width="width30"
-                    :stroke-width="strokeWidth" stroke-linecap="butt" class="top-value"
-                    define-back-color="rgba(255,255,255,0.2)"></el-progress>
-                  <el-progress type="circle" :show-text="false" :percentage="color.Y" color="#fff" :width="width30"
-                    :stroke-width="strokeWidth" stroke-linecap="butt" class="top-value"
-                    define-back-color="rgba(255,255,255,0.2)"></el-progress>
-                  <el-progress type="circle" :show-text="false" :percentage="color.K" color="#fff" :width="width30"
-                    :stroke-width="strokeWidth" stroke-linecap="butt" class="top-value"
-                    define-back-color="rgba(255,255,255,0.2)"></el-progress>
+                  <el-progress
+                    type="circle"
+                    :show-text="false"
+                    :percentage="color.C"
+                    color="#fff"
+                    :width="width30"
+                    :stroke-width="strokeWidth"
+                    stroke-linecap="butt"
+                    class="top-value"
+                    define-back-color="rgba(255,255,255,0.2)"
+                  ></el-progress>
+                  <el-progress
+                    type="circle"
+                    :show-text="false"
+                    :percentage="color.M"
+                    color="#fff"
+                    :width="width30"
+                    :stroke-width="strokeWidth"
+                    stroke-linecap="butt"
+                    class="top-value"
+                    define-back-color="rgba(255,255,255,0.2)"
+                  ></el-progress>
+                  <el-progress
+                    type="circle"
+                    :show-text="false"
+                    :percentage="color.Y"
+                    color="#fff"
+                    :width="width30"
+                    :stroke-width="strokeWidth"
+                    stroke-linecap="butt"
+                    class="top-value"
+                    define-back-color="rgba(255,255,255,0.2)"
+                  ></el-progress>
+                  <el-progress
+                    type="circle"
+                    :show-text="false"
+                    :percentage="color.K"
+                    color="#fff"
+                    :width="width30"
+                    :stroke-width="strokeWidth"
+                    stroke-linecap="butt"
+                    class="top-value"
+                    define-back-color="rgba(255,255,255,0.2)"
+                  ></el-progress>
                 </div>
                 <div class="top-name" :style="{ color: '#' + color.code }">
                   {{ color.name }}
@@ -57,8 +106,14 @@
                 <p>C</p>
               </div>
               <div class="color-circular">
-                <el-progress type="circle" :percentage="nowColor.C" :show-text="false" :width="width" color="#0093D3"
-                  stroke-linecap="butt">
+                <el-progress
+                  type="circle"
+                  :percentage="nowColor.C"
+                  :show-text="false"
+                  :width="width"
+                  color="#0093D3"
+                  stroke-linecap="butt"
+                >
                 </el-progress>
                 <span>{{ nowColor.C }}</span>
               </div>
@@ -68,8 +123,14 @@
                 <p>M</p>
               </div>
               <div class="color-circular">
-                <el-progress type="circle" :percentage="nowColor.M" :show-text="false" :width="width" color="#CC006B"
-                  stroke-linecap="butt">
+                <el-progress
+                  type="circle"
+                  :percentage="nowColor.M"
+                  :show-text="false"
+                  :width="width"
+                  color="#CC006B"
+                  stroke-linecap="butt"
+                >
                 </el-progress>
                 <span>{{ nowColor.M }}</span>
               </div>
@@ -79,8 +140,14 @@
                 <p>Y</p>
               </div>
               <div class="color-circular">
-                <el-progress type="circle" :percentage="nowColor.Y" :show-text="false" :width="width" color="#FFF10C"
-                  stroke-linecap="butt">
+                <el-progress
+                  type="circle"
+                  :percentage="nowColor.Y"
+                  :show-text="false"
+                  :width="width"
+                  color="#FFF10C"
+                  stroke-linecap="butt"
+                >
                 </el-progress>
                 <span>{{ nowColor.Y }}</span>
               </div>
@@ -90,8 +157,14 @@
                 <p>K</p>
               </div>
               <div class="color-circular">
-                <el-progress type="circle" :percentage="nowColor.K" :show-text="false" :width="width" color="#000000"
-                  stroke-linecap="butt">
+                <el-progress
+                  type="circle"
+                  :percentage="nowColor.K"
+                  :show-text="false"
+                  :width="width"
+                  color="#000000"
+                  stroke-linecap="butt"
+                >
                 </el-progress>
                 <span>{{ nowColor.K }}</span>
               </div>
@@ -133,18 +206,31 @@
       </div>
     </div>
     <div class="third-box" ref="thirdBox">
-      <div class="third-top-left" :style="{ transform: `translateY(${topLeftOffset}vh)` }">
+      <div
+        class="third-top-left"
+        :style="{ transform: `translateY(${topLeftOffset}vh)` }"
+      >
         <span>传</span>
       </div>
-      <div class="third-top-right" :style="{ transform: `translateY(${topRightOffset}vh)` }">
+      <div
+        class="third-top-right"
+        :style="{ transform: `translateY(${topRightOffset}vh)` }"
+      >
         <span>统</span>
-        <img src="https://news.cgtn.com/event/2022/The-Song-Painted/style/img/introduceFloat02.png" @click="thirdNext"
-          class="third-click-btn-next" />
+        <img
+          src="https://news.cgtn.com/event/2022/The-Song-Painted/style/img/introduceFloat02.png"
+          @click="thirdNext"
+          class="third-click-btn-next"
+        />
       </div>
 
       <div class="third-bottom">
-        <img src="https://news.cgtn.com/event/2022/The-Song-Painted/style/img/introduceFloat02.png" @click="thirdLast"
-          class="third-click-btn-last" v-if="showBtn" />
+        <img
+          src="https://news.cgtn.com/event/2022/The-Song-Painted/style/img/introduceFloat02.png"
+          @click="thirdLast"
+          class="third-click-btn-last"
+          v-if="showBtn"
+        />
 
         <div class="third-bottom-title">
           <div style="width: 20vw; height: 5vh"></div>
@@ -284,133 +370,475 @@
             </div>
           </div>
         </div>
-        <el-drawer title="video" size="80%" :visible.sync="isShowVideo" :with-header="false" class="tvBox">
-          <video :src="nowVideo" v-if="isShowVideo" controls fit="fill" style="width: 100%; height: 100%"></video>
+        <el-drawer
+          title="video"
+          size="80%"
+          :visible.sync="isShowVideo"
+          :with-header="false"
+          class="tvBox"
+        >
+          <video
+            :src="nowVideo"
+            v-if="isShowVideo"
+            controls
+            fit="fill"
+            style="width: 100%; height: 100%"
+          ></video>
         </el-drawer>
       </div>
     </div>
 
-    <div class="fourth-box" ref="fourthBox">
+    <div
+      class="fourth-box"
+      ref="fourthBox"
+      :class="isExpandMap ? '' : 'hideMap'"
+    >
       <div class="mapBox">
-        <div id="allmap"></div>
+        <div class="allMapBox">
+          <div id="allmap"></div>
+        </div>
+
+        <div class="mapChange" @click="isExpandMap = !isExpandMap">
+          <i class="el-icon-d-arrow-left" v-if="isExpandMap"></i>
+          <i class="el-icon-d-arrow-right" v-if="!isExpandMap"></i>
+        </div>
       </div>
       <div class="fourth-right">
-        <div class="cultureBox" ref="cultureBox">
-
+        <div
+          class="cultureBox"
+          ref="cultureBox"
+          :class="isExpandMap ? '' : 'hide-cultureBox'"
+        >
           <div class="dialogBox">
             <div class="avatarBox">
               <img class="ai" src="@/assets/image/Home/ai.gif" />
             </div>
             <div class="contentBox">
               <div class="contentText">
-                <p>我叫古晓，你的个人AI助手<br>我可以为你做以下事:</p>
+                <p>我叫古晓，你的个人AI助手<br />我可以为你做以下事:</p>
                 <!-- <p>我叫古晓</p> -->
               </div>
               <div class="contentModule">
                 <div class="cultureIntroduce">
-                  <h4 style="margin: 5px;font-family: kaiti;">文化展示</h4>
-                  <p style="margin-left: 5px;line-height: 18px;letter-spacing: 3px;font-family: kaiti;">
-                    选择地图上<br>的城市查看当地<br>文化</p>
+                  <h4 style="margin: 5px; font-family: kaiti">文化展示</h4>
+                  <p
+                    style="
+                      margin-left: 5px;
+                      line-height: 18px;
+                      letter-spacing: 3px;
+                      font-family: kaiti;
+                    "
+                  >
+                    选择地图上<br />的城市查看当地<br />文化
+                  </p>
                 </div>
                 <div class="questionAnswer">
-                  <h4 style="margin: 5px;font-family: kaiti;">知天文<br>地理</h4>
-                  <p style="margin-left: 5px;line-height: 18px;letter-spacing: 3px;font-family: kaiti;">为你答疑<br>解惑</p>
+                  <h4 style="margin: 5px; font-family: kaiti">
+                    知天文<br />地理
+                  </h4>
+                  <p
+                    style="
+                      margin-left: 5px;
+                      line-height: 18px;
+                      letter-spacing: 3px;
+                      font-family: kaiti;
+                    "
+                  >
+                    为你答疑<br />解惑
+                  </p>
                 </div>
                 <div class="moduleSonBox">
-                  <div class="scenicIntroduce" style="text-align: right;">
-                    <h4 style="margin: 5px;font-family: kaiti;">景点介绍</h4>
-                    <p style="margin-right: 5px;line-height: 18px;letter-spacing: 3px;font-family: kaiti;">寻古人<br>游踪</p>
+                  <div class="scenicIntroduce" style="text-align: right">
+                    <h4 style="margin: 5px; font-family: kaiti">景点介绍</h4>
+                    <p
+                      style="
+                        margin-right: 5px;
+                        line-height: 18px;
+                        letter-spacing: 3px;
+                        font-family: kaiti;
+                      "
+                    >
+                      寻古人<br />游踪
+                    </p>
                   </div>
-                  <div class="AIDraw">
-                    <h4 style="margin: 5px;font-family: kaiti;">琴棋书画</h4>
-                    <p style="margin-left: 5px;line-height: 18px;letter-spacing: 3px;font-family: kaiti;">古法传承<br>AI绘画
+                  <div class="AIDraw" @click="giveImg('画一个坤坤')">
+                    <h4 style="margin: 5px; font-family: kaiti">琴棋书画</h4>
+                    <p
+                      style="
+                        margin-left: 5px;
+                        line-height: 18px;
+                        letter-spacing: 3px;
+                        font-family: kaiti;
+                      "
+                    >
+                      古法传承<br />AI绘画
                     </p>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
 
-          <div class="dialogBox" v-for="(chat, index) in chats" :key="index"
-            :class="chat.type === 'user' ? 'dialogBox-right' : ''">
-            <div class="avatarBox" :class="chat.type === 'user' ? 'avatarBox-right' : ''">
-              <img class="ai" :src="chat.avatar" />
-            </div>
-            <div class="contentBox" :class="chat.type === 'user' ? 'contentBox-right' : ''">
-              <div class="contentText">
-                <p>{{ chat.content.trim() }}</p>
+          <div v-for="(chat, index) in chats" :key="index">
+            <div
+              class="dialogBox"
+              :class="chat.type === 'user' ? 'dialogBox-right' : ''"
+            >
+              <div
+                class="avatarBox"
+                :class="chat.type === 'user' ? 'avatarBox-right' : ''"
+                @click="changePage('Center')"
+              >
+                <img class="ai" :src="chat.avatar" />
               </div>
-              <div class="contentModule" v-if="chat.modules.length">
-                <div class="cultureIntroduce" :style="{ backgroundImage: `url(${chat.modules[0].bck})` }">
-                  <h4 style="margin: 5px;font-family: kaiti;">{{ chat.modules[0].title }}</h4>
-                  <p style="margin-left: 5px;line-height: 18px;letter-spacing: 3px;font-family: kaiti;">
-                    {{ chat.modules[0].tip }}</p>
+
+              <div
+                class="contentBox"
+                :class="chat.type === 'user' ? 'contentBox-right' : ''"
+              >
+                <div class="contentText" v-if="chat.type === 'user'">
+                  <p>{{ chat.content.trim() }}</p>
+                  <img class="aiImg" :src="chat.imgUrl" v-if="chat.imgUrl" />
                 </div>
-                <div class="questionAnswer" :style="{ backgroundImage: `url(${chat.modules[1].bck})` }">
-                  <h4 style="margin: 5px;font-family: kaiti;">{{ chat.modules[1].title }}</h4>
-                  <p style="margin-left: 5px;line-height: 18px;letter-spacing: 3px;font-family: kaiti;">{{
-                    chat.modules[1].tip }}</p>
+                <div class="contentText" v-if="chat.type !== 'user'">
+                  <div
+                    class="thinking"
+                    v-html="chat.thinking"
+                    v-if="chat.thinking"
+                  ></div>
+                  <div v-html="chat.answer"></div>
+                  <img class="aiImg" :src="chat.imgUrl" v-if="chat.imgUrl" />
                 </div>
-                <div class="moduleSonBox">
-                  <div class="scenicIntroduce" style="text-align: right;"
-                    :style="{ backgroundImage: `url(${chat.modules[2].bck})` }">
-                    <h4 style="margin: 5px;font-family: kaiti;">{{ chat.modules[2].title }}</h4>
-                    <p style="margin-right: 5px;line-height: 18px;letter-spacing: 3px;font-family: kaiti;">{{
-                      chat.modules[2].tip }}</p>
-                  </div>
-                  <div class="AIDraw" :style="{ backgroundImage: `url(${chat.modules[3].bck})` }">
-                    <h4 style="margin: 5px;font-family: kaiti;">{{ chat.modules[3].title }}</h4>
-                    <p style="margin-left: 5px;line-height: 18px;letter-spacing: 3px;font-family: kaiti;">{{
-                      chat.modules[3].tip }}
+                <div class="contentModule" v-if="chat.modules.length">
+                  <div
+                    class="cultureIntroduce"
+                    @click="changePage('City')"
+                    :style="{ backgroundImage: `url(${chat.modules[0].bck})` }"
+                  >
+                    <h4 style="margin: 5px; font-family: kaiti">
+                      {{ chat.modules[0].title }}
+                    </h4>
+                    <p
+                      style="
+                        margin-left: 5px;
+                        line-height: 18px;
+                        letter-spacing: 3px;
+                        font-family: kaiti;
+                      "
+                    >
+                      {{ chat.modules[0].tip }}
                     </p>
                   </div>
+                  <div
+                    class="questionAnswer"
+                    @click="changePage('City')"
+                    :style="{ backgroundImage: `url(${chat.modules[1].bck})` }"
+                  >
+                    <h4 style="margin: 5px; font-family: kaiti">
+                      {{ chat.modules[1].title }}
+                    </h4>
+                    <p
+                      style="
+                        margin-left: 5px;
+                        line-height: 18px;
+                        letter-spacing: 3px;
+                        font-family: kaiti;
+                      "
+                    >
+                      {{ chat.modules[1].tip }}
+                    </p>
+                  </div>
+                  <div class="moduleSonBox">
+                    <div
+                      class="scenicIntroduce"
+                      @click="changePage('City')"
+                      style="text-align: right"
+                      :style="{
+                        backgroundImage: `url(${chat.modules[2].bck})`,
+                      }"
+                    >
+                      <h4 style="margin: 5px; font-family: kaiti">
+                        {{ chat.modules[2].title }}
+                      </h4>
+                      <p
+                        style="
+                          margin-right: 5px;
+                          line-height: 18px;
+                          letter-spacing: 3px;
+                          font-family: kaiti;
+                        "
+                      >
+                        {{ chat.modules[2].tip }}
+                      </p>
+                    </div>
+                    <div
+                      class="AIDraw"
+                      :style="{
+                        backgroundImage: `url(${chat.modules[3].bck})`,
+                      }"
+                      @click="changePage('City')"
+                    >
+                      <h4 style="margin: 5px; font-family: kaiti">
+                        {{ chat.modules[3].title }}
+                      </h4>
+                      <p
+                        style="
+                          margin-left: 5px;
+                          line-height: 18px;
+                          letter-spacing: 3px;
+                          font-family: kaiti;
+                        "
+                      >
+                        {{ chat.modules[3].tip }}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-
               </div>
+            </div>
+
+            <div class="operateBox" v-if="chat.type === 'user' ? false : true">
+              <el-popover
+                placement="top-start"
+                width="250"
+                height="500"
+                trigger="hover"
+              >
+                <el-table
+                  :data="languageData"
+                  height="250"
+                  @row-click="changLanguage"
+                >
+                  <el-table-column
+                    width="100"
+                    property="englishName"
+                    label="英文名"
+                  ></el-table-column>
+                  <el-table-column
+                    width="150"
+                    property="chineseName"
+                    label="中文名"
+                  ></el-table-column>
+                </el-table>
+                <img
+                  slot="reference"
+                  src="@/assets/image/Home/fanyi.png"
+                  @click="translateText(chat.id,chat.type)"
+                />
+              </el-popover>
             </div>
           </div>
 
           <div class="dialogBox" v-if="isThinking">
             <div class="avatarBox">
-              <img class="ai" src="@/assets/image/Home/ai.gif" />
+              <img class="ai" src="https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif" />
             </div>
             <div class="contentBox">
               <div class="contentText">
-                <i class="el-icon-loading" style="color: gray;"></i>
+                <i class="el-icon-loading" style="color: gray"></i>
               </div>
-
             </div>
           </div>
-
         </div>
-        <div class="inputBox">
-          <div v-if="limitTip" class="limit-tip"><span style="color: red;">{{ textarea.length }}</span><span
-              style="color: gray;">/10000</span></div>
-          <textarea class="question-textarea" maxlength="10000" v-model="textarea"
-            :style="{ height: textareaHeight + 'vh' }" @input="adjustHeight" ref="questionTextarea"
-            placeholder="万事疑惑询古晓" @keydown.enter.prevent="sendMessage('')"></textarea>
-          <el-tooltip slot="suffix" class="item" effect="light" content="还没说呢" placement="top-end" v-show="isTextEmpty">
+        <div class="inputBox" :class="isExpandMap ? '' : 'hide-inputBox'">
+          <div v-if="limitTip" class="limit-tip">
+            <span style="color: red">{{ textarea.length }}</span
+            ><span style="color: gray">/10000</span>
+          </div>
+          <div class="chatImg">
+            <img class="uploadImg" :src="uploadImgUrl" v-if="uploadImgUrl" />
+            <div class="deleteDiv" @click="deleteUploadImgUrl">
+              <i class="el-icon-delete"></i>
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              @change="handleFileUpload"
+              ref="fileInput"
+              style="display: none"
+            />
+          </div>
+          <textarea
+            class="question-textarea"
+            :class="isExpandMap ? '' : 'hide-question-textarea'"
+            maxlength="10000"
+            v-model="textarea"
+            :style="{ height: textareaHeight + 'vh' }"
+            @input="adjustHeight"
+            ref="questionTextarea"
+            placeholder="万事疑惑询古晓"
+            @keydown.enter.prevent="sendMessage('')"
+          ></textarea>
+          <el-tooltip
+            slot="suffix"
+            class="item"
+            effect="light"
+            content="还没说呢"
+            placement="top-end"
+            v-show="isTextEmpty"
+          >
             <i :class="iconClass" class="el-icon-s-promotion"></i>
           </el-tooltip>
-          <i slot="suffix" :class="iconClass" class="el-icon-s-promotion el-icon-s-promotion-allowed"
-            v-show="!isTextEmpty" @click="sendMessage('')"></i>
-          <i class="el-icon-microphone "></i>
-          <el-tooltip slot="suffix" class="item" effect="light" :content="!isRecording ? '语音输入' : '停止语音输入'"
-            placement="top-end">
-            <i class="el-icon-microphone" :class="isRecording ? 'saying' : ''" @click="sayingInMessage"></i>
+          <i
+            slot="suffix"
+            :class="iconClass"
+            class="el-icon-s-promotion el-icon-s-promotion-allowed"
+            v-show="!isTextEmpty"
+            @click="sendMessage('')"
+          ></i>
+          <i class="el-icon-microphone"></i>
+          <el-tooltip
+            slot="suffix"
+            class="item"
+            effect="light"
+            :content="!isRecording ? '语音输入' : '停止语音输入'"
+            placement="top-end"
+          >
+            <i
+              class="el-icon-microphone"
+              :class="isRecording ? 'saying' : ''"
+              @click="sayingInMessage"
+            ></i>
+          </el-tooltip>
+          <el-tooltip
+            slot="suffix"
+            class="item"
+            effect="light"
+            content="AI识图"
+            placement="top-end"
+          >
+            <i class="el-icon-picture-outline-round" @click="showFileInput"></i>
           </el-tooltip>
         </div>
       </div>
+      <div
+        class="fourth-right-right"
+        :class="isExpandMap ? '' : 'hide-right-right'"
+      >
+        <div class="history-container">
+          <div class="history-header">
+            <span class="history-icon">🕒</span>
 
+            <span class="history-title">对话时光机</span>
+            <el-tooltip effect="dark" content="设置" placement="top">
+              <i
+                class="el-icon-setting"
+                @click="isShowDialog = true"
+                style="cursor: pointer"
+              ></i>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="新对话" placement="top">
+              <i
+                class="el-icon-circle-plus-outline newSaying"
+                @click="newSaying"
+              ></i>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="退出登录" placement="top">
+              <img src="@/assets/image/Home/tuichudenglu.png" class="exit" @click="exit">
+            </el-tooltip>
+          </div>
+          <div class="history-list">
+            <el-collapse v-model="activeName" accordion>
+              <el-collapse-item
+                :title="time"
+                :name="time"
+                v-for="(historyItem, time) in historyes.histories"
+                :key="time"
+                class="history-item"
+              >
+                <template #title>
+                  <span class="history-time">{{ time }}</span>
+                </template>
+                <!-- <div
+                >
+                  <span v-if="historyItem.messages[0].type === 'user'">用户: </span>
+                  <span v-if="historyItem.messages[0].type === 'assistant'">助手: </span>
+                  {{ historyItem.messages[0].text }}
+                </div>
+                <div
+                >
+                  <span v-if="historyItem.messages[1].type === 'user'">用户: </span>
+                  <span v-if="historyItem.messages[1].type === 'assistant'">助手: </span>
+                  {{ historyItem.messages[1].text }}
+                </div> -->
+                <div
+                  v-for="(msg, index) in historyItem.messages.slice(0, 2)"
+                  :key="index"
+                >
+                  <span v-if="msg.role === 'user'">用户: </span>
+                  <span v-if="msg.role === 'assistant'">助手: </span>
+                  {{ msg.content }}
+                </div>
+
+                <div class="history-actions">
+                  <el-tooltip effect="dark" content="恢复对话" placement="top">
+                    <el-button
+                      type="success"
+                      icon="el-icon-refresh-left"
+                      circle
+                      @click="backHistory(historyItem.historyId)"
+                    ></el-button>
+                  </el-tooltip>
+                  <el-tooltip effect="dark" content="删除记录" placement="top">
+                    <el-button
+                      type="danger"
+                      icon="el-icon-delete"
+                      circle
+                      @click="deleteHistory(historyItem.historyId)"
+                    ></el-button>
+                  </el-tooltip>
+                </div>
+              </el-collapse-item>
+            </el-collapse>
+          </div>
+        </div>
+      </div>
+      <div class="dialog" v-if="isShowDialog">
+        <div class="dialog-close">
+          <i class="el-icon-close" @click="isShowDialog = false"></i>
+        </div>
+        <div class="block">
+          <span class="demonstration">速度</span>
+          <el-slider
+            v-model="value1"
+            :format-tooltip="formatTooltip"
+          ></el-slider>
+        </div>
+        <div class="block">
+          <span class="demonstration">回答温度</span>
+          <el-slider
+            v-model="value2"
+            :format-tooltip="formatTooltip"
+          ></el-slider>
+        </div>
+        <div class="block">
+          <span class="demonstration">数据源</span>
+          <el-slider
+            v-model="value3"
+            :format-tooltip="formatTooltip"
+          ></el-slider>
+        </div>
+        <div class="block">
+          <span class="demonstration">max token</span>
+          <el-slider
+            v-model="value4"
+            :format-tooltip="formatTooltip"
+          ></el-slider>
+        </div>
+        <div class="dialog-yes">
+          <el-button type="primary" @click="dialogYes">确认更改</el-button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import MarkdownIt from "markdown-it";
 import allProvinceBoundaries from "@/assets/json/all-province-boundaries.json";
 import allCityBoundaries from "@/assets/json/all-city-boundaries.json";
 import axios from "axios";
+import { time } from "echarts";
 export default {
   name: "Home",
 
@@ -429,16 +857,619 @@ export default {
       provinceFillLayer: null,
       cityBoundaryLayer: null,
       highlightedPolygon: null,
-      textarea: '',
+      textarea: "",
       textareaHeight: 3,
       isThinking: false,
       isRecording: false,
-      transcript: '',// 存储语音转文字的结果
-      recognition: null,// 存储 SpeechRecognition 实例
+      transcript: "", // 存储语音转文字的结果
+      recognition: null, // 存储 SpeechRecognition 实例
+      answerText: "",
+      displayText: "", // 当前显示的文本内容
+      index: 0, // 当前处理到的字符索引
+      speed: 100, // 字符显示的速度，单位为毫秒
+      isPaused: false, // 暂停状态标志
+      timer: null, // 定时器变量，用于控制字符显示的时间间隔
       cityData: allCityBoundaries, // 直接导入城市边界数据
+      translateLanguage: "en",
+      selectedFile: "",
+      isExpandMap: true,
+      activeName: "",
+      dialogTableVisible: false,
+      value3: 30,
+      value2: 50,
+      value1: 40,
+      value4: 55,
+      isShowDialog: false,
+      historyId: "",
+      uploadImgUrl: "",
+      answerBuffer: "",
+      thinkingBuffer: "",
+      md: null,
+      thinkingCompleteMarkdown: "",
+      answerCompleteMarkdown: "",
+      translateId:0,
       topRightOffset: parseFloat(sessionStorage.getItem("topRightOffset")) || 0,
       topLeftOffset: parseFloat(sessionStorage.getItem("topLeftOffset")) || 0,
       showBtn: sessionStorage.getItem("showBtn") === "true", // 初始化 showBtn 状态
+
+      languageData: [
+        {
+          englishName: "English",
+          chineseName: "英语",
+          code: "en",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Chinese",
+          chineseName: "简体中文",
+          code: "zh-CHS",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Spanish",
+          chineseName: "西班牙语",
+          code: "es",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Arabic",
+          chineseName: "阿拉伯语",
+          code: "ar",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "French",
+          chineseName: "法语",
+          code: "fr",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Russian",
+          chineseName: "俄语",
+          code: "ru",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Hindi",
+          chineseName: "印地语",
+          code: "hi",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Portuguese",
+          chineseName: "葡萄牙语",
+          code: "pt",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Japanese",
+          chineseName: "日语",
+          code: "ja",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "German",
+          chineseName: "德语",
+          code: "de",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Indonesian",
+          chineseName: "印度尼西亚语",
+          code: "id",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Italian",
+          chineseName: "意大利语",
+          code: "it",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Korean",
+          chineseName: "韩语",
+          code: "ko",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Dutch",
+          chineseName: "荷兰语",
+          code: "nl",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Thai",
+          chineseName: "泰语",
+          code: "th",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Vietnamese",
+          chineseName: "越南语",
+          code: "vi",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Chinese",
+          chineseName: "繁体中文",
+          code: "zh-CHT",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Afrikaans",
+          chineseName: "南非荷兰语",
+          code: "af",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Amharic",
+          chineseName: "阿姆哈拉语",
+          code: "am",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Azerbaijani",
+          chineseName: "阿塞拜疆语",
+          code: "az",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Belarusian",
+          chineseName: "白俄罗斯语",
+          code: "be",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Bulgarian",
+          chineseName: "保加利亚语",
+          code: "bg",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Bangla",
+          chineseName: "孟加拉语",
+          code: "bn",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Bosnian (Latin)",
+          chineseName: "波斯尼亚语",
+          code: "bs",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Catalan",
+          chineseName: "加泰隆语",
+          code: "ca",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Cebuano",
+          chineseName: "宿务语",
+          code: "ceb",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Corsican",
+          chineseName: "科西嘉语",
+          code: "co",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Czech",
+          chineseName: "捷克语",
+          code: "cs",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Welsh",
+          chineseName: "威尔士语",
+          code: "cy",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Danish",
+          chineseName: "丹麦语",
+          code: "da",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Greek",
+          chineseName: "希腊语",
+          code: "el",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Esperanto",
+          chineseName: "世界语",
+          code: "eo",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Estonian",
+          chineseName: "爱沙尼亚语",
+          code: "et",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Basque",
+          chineseName: "巴斯克语",
+          code: "eu",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Persian",
+          chineseName: "波斯语",
+          code: "fa",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Finnish",
+          chineseName: "芬兰语",
+          code: "fi",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Fijian",
+          chineseName: "斐济语",
+          code: "fj",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Frisian",
+          chineseName: "弗里西语",
+          code: "fy",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Irish",
+          chineseName: "爱尔兰语",
+          code: "ga",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Scots",
+          chineseName: "苏格兰盖尔语",
+          code: "gd",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Galician",
+          chineseName: "加利西亚语",
+          code: "gl",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Gujarati",
+          chineseName: "古吉拉特语",
+          code: "gu",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Hausa",
+          chineseName: "豪萨语",
+          code: "ha",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Hawaiian",
+          chineseName: "夏威夷语",
+          code: "haw",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Hebrew",
+          chineseName: "希伯来语",
+          code: "he",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Hindi",
+          chineseName: "印地语",
+          code: "hi",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Croatian",
+          chineseName: "克罗地亚语",
+          code: "hr",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Haitian",
+          chineseName: "海地克里奥尔语",
+          code: "ht",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Hungarian",
+          chineseName: "匈牙利语",
+          code: "hu",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Armenian",
+          chineseName: "亚美尼亚语",
+          code: "hy",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Igbo",
+          chineseName: "伊博语",
+          code: "ig",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Icelandic",
+          chineseName: "冰岛语",
+          code: "is",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Javanese",
+          chineseName: "爪哇语",
+          code: "jw",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Georgian",
+          chineseName: "格鲁吉亚语",
+          code: "ka",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Kazakh",
+          chineseName: "哈萨克语",
+          code: "kk",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Khmer",
+          chineseName: "高棉语",
+          code: "km",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Kannada",
+          chineseName: "卡纳达语",
+          code: "kn",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Kurdish",
+          chineseName: "库尔德语",
+          code: "ku",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Kyrgyz",
+          chineseName: "柯尔克孜语",
+          code: "ky",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Latin",
+          chineseName: "拉丁语",
+          code: "la",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Luxembourgish",
+          chineseName: "卢森堡语",
+          code: "lb",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Lao",
+          chineseName: "老挝语",
+          code: "lo",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Lithuanian",
+          chineseName: "立陶宛语",
+          code: "lt",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Latvian",
+          chineseName: "拉脱维亚语",
+          code: "lv",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Malagasy",
+          chineseName: "马尔加什语",
+          code: "mg",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Maori",
+          chineseName: "毛利语",
+          code: "mi",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Macedonian",
+          chineseName: "马其顿语",
+          code: "mk",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Malayalam",
+          chineseName: "马拉雅拉姆语",
+          code: "ml",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Mongolian",
+          chineseName: "蒙古语",
+          code: "mn",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Marathi",
+          chineseName: "马拉地语",
+          code: "mr",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Malay",
+          chineseName: "马来语",
+          code: "ms",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Maltese",
+          chineseName: "马耳他语",
+          code: "mt",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Hmong",
+          chineseName: "白苗语",
+          code: "mww",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Myanmar (Burmese)",
+          chineseName: "缅甸语",
+          code: "my",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Nepali",
+          chineseName: "尼泊尔语",
+          code: "ne",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Norwegian",
+          chineseName: "挪威语",
+          code: "no",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Nyanja (Chichewa)",
+          chineseName: "齐切瓦语",
+          code: "ny",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Querétaro Otomi",
+          chineseName: "克雷塔罗奥托米语",
+          code: "otq",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Punjabi",
+          chineseName: "旁遮普语",
+          code: "pa",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Polish",
+          chineseName: "波兰语",
+          code: "pl",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Pashto",
+          chineseName: "普什图语",
+          code: "ps",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Romanian",
+          chineseName: "罗马尼亚语",
+          code: "ro",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Sindhi",
+          chineseName: "信德语",
+          code: "sd",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Sinhala (Sinhalese)",
+          chineseName: "僧伽罗语",
+          code: "si",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Slovak",
+          chineseName: "斯洛伐克语",
+          code: "sk",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Slovenian",
+          chineseName: "斯洛文尼亚语",
+          code: "sl",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Samoan",
+          chineseName: "萨摩亚语",
+          code: "sm",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Shona",
+          chineseName: "修纳语",
+          code: "sn",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Somali",
+          chineseName: "索马里语",
+          code: "so",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Albanian",
+          chineseName: "阿尔巴尼亚语",
+          code: "sq",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Serbian (Cyrillic)",
+          chineseName: "塞尔维亚语(西里尔文)",
+          code: "sr-Cyrl",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Serbian (Latin)",
+          chineseName: "塞尔维亚语(拉丁文)",
+          code: "sr-Latn",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Sesotho",
+          chineseName: "塞索托语",
+          code: "st",
+          autoRecognition: "N",
+        },
+        {
+          englishName: "Sundanese",
+          chineseName: "巽他语",
+          code: "su",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Swedish",
+          chineseName: "瑞典语",
+          code: "sv",
+          autoRecognition: "Y",
+        },
+        {
+          englishName: "Kiswahili",
+          chineseName: "斯瓦希里语",
+          code: "sw",
+          autoRecognition: "Y",
+        },
+      ],
       videos: [
         require("@/assets/video/guohua.mp4"), // 使用require确保路径被正确解析
         require("@/assets/video/hanfu.mp4"),
@@ -1477,98 +2508,13 @@ export default {
         新疆维吾尔自治区: "#FF5733",
       },
       chats: [
-        {
-          type: 'ai',
-          avatar: 'http://localhost:8080/img/ai.d3e17c3d.gif',
-          content: "欢迎使用智能语音机器人！",
-
-          modules: [
-            {
-              title: '文化展示',
-              tip: "您好，我是您的智能语音机器人。",
-              bck: 'http://localhost:8080/img/mei.24b2b9c2.jpg',
-              content: '123456789012345678990'
-            },
-            {
-              title: '文化展示',
-              tip: "您好，我是您的智能语音机器人。",
-              bck: 'http://localhost:8080/img/mei.24b2b9c2.jpg',
-              content: '123456789012345678990'
-            },
-            {
-              title: '文化展示',
-              tip: "您好，我是您的智能语音机器人。",
-              bck: 'http://localhost:8080/img/mei.24b2b9c2.jpg',
-              content: '123456789012345678990'
-            },
-            {
-              title: '文化展示',
-              tip: "您好，我是您的智能语音机器人。",
-              bck: 'http://localhost:8080/img/mei.24b2b9c2.jpg',
-              content: '123456789012345678990'
-            },
-          ]
-        },
-        {
-          type: 'user',
-          avatar: 'http://localhost:8080/img/ai.d3e17c3d.gif',
-          content: "你为什么叫这个名字",
-
-          modules: [
-
-          ]
-        },
-        {
-          type: 'ai',
-          avatar: 'http://localhost:8080/img/ai.d3e17c3d.gif',
-          content: "我的名字的含义是古意今情，悉了然于心。寓意既含往昔之韵，亦揽当今之情，志在融古今于一体，以启心灵之悟。",
-
-          modules: [
-
-          ]
-        },
-        {
-          type: 'user',
-          avatar: 'http://localhost:8080/img/ai.d3e17c3d.gif',
-          content: "你能干什么",
-
-          modules: [
-
-          ]
-        },
-        {
-          type: 'ai',
-          avatar: 'http://localhost:8080/img/ai.d3e17c3d.gif',
-          content: "欢迎使用智能语音机器人！",
-
-          modules: [
-            {
-              title: '文化展示',
-              tip: "您好，我是您的智能语音机器人。",
-              bck: 'http://localhost:8080/img/mei.24b2b9c2.jpg',
-              content: '123456789012345678990'
-            },
-            {
-              title: '文化展示',
-              tip: "您好，我是您的智能语音机器人。",
-              bck: 'http://localhost:8080/img/mei.24b2b9c2.jpg',
-              content: '123456789012345678990'
-            },
-            {
-              title: '文化展示',
-              tip: "您好，我是您的智能语音机器人。",
-              bck: 'http://localhost:8080/img/mei.24b2b9c2.jpg',
-              content: '123456789012345678990'
-            },
-            {
-              title: '文化展示',
-              tip: "您好，我是您的智能语音机器人。",
-              bck: 'http://localhost:8080/img/mei.24b2b9c2.jpg',
-              content: '123456789012345678990'
-            },
-          ]
-        },
+        
       ],
+    
+      historyes: {
+       
+      },
+     
     };
   },
   computed: {
@@ -1580,15 +2526,24 @@ export default {
     },
     limitTip() {
       if (this.textarea.length > 9500) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     },
     isTextEmpty() {
       // 使用正则表达式判断字符串是否为空或全为空格
-      return /^\s*$/.test(this.textarea);
-    }
+      let text = /^\s*$/.test(this.textarea);
+      if (text === true) {
+        if (this.uploadImgUrl === "") {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    },
   },
   created() {
     // 页面创建时，从 sessionStorage 加载数据
@@ -1616,81 +2571,70 @@ export default {
     }
 
     // 获取 SpeechRecognition 构造函数，兼容不同浏览器
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechRecognition) {
       // 创建 SpeechRecognition 实例
       this.recognition = new SpeechRecognition();
       // 设置识别语言为中文
-      this.recognition.lang = 'zh-CN';
+      this.recognition.lang = "zh-CN";
       // 设置连续识别
       this.recognition.continuous = true;
-      //返回临时识别结果
+      // 返回临时识别结果
       this.recognition.interimResults = true;
-      //       // 获取更多可能的识别结果
+      // 获取更多可能的识别结果
       this.recognition.maxAlternatives = 3;
-      // 记录上一次处理的结果索引
-      let lastResultIndex = 0;
-      // 初始化 Web Audio API 相关对象
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      let microphoneStream;
-      const gainNode = audioContext.createGain();
-      gainNode.gain.value = 5; // 适当增加音量，可根据实际情况调整
 
-      // 获取麦克风权限并设置音频处理
-      navigator.mediaDevices.getUserMedia({ audio: true })
-        .then((stream) => {
-          microphoneStream = stream;
-          const source = audioContext.createMediaStreamSource(stream);
-          source.connect(gainNode);
-          gainNode.connect(audioContext.destination);
-        })
-        .catch((error) => {
-          console.error('无法获取麦克风权限:', error);
-        });
-      // 当识别有结果时触发的事件处理函数
+      // 记录最终的文本内容
+      let finalText = "";
+      // 记录临时文本内容
+      let interimText = "";
+      let text = this.textarea;
+
       this.recognition.onresult = (event) => {
-        // 从事件结果中提取文字信息
-        // const transcript = Array.from(event.results)
-        //   .map((result) => result[0])
-        //   .map((result) => result.transcript)
-        //   .join('');
-        // 将识别结果赋值给 transcript 数据
-        // this.transcript = transcript;
-        let newFinalTranscript = '';
-        let newInterimTranscript = '';
-
-        // 只处理新的结果
-        for (let i = Math.max(lastResultIndex, event.resultIndex); i < event.results.length; i++) {
+        // 重置临时文本
+        interimText = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
           const result = event.results[i];
           if (result.isFinal) {
-            newFinalTranscript += result[0].transcript;
+            // 处理最终结果
+            const transcript = result[0].transcript;
+            finalText += transcript;
+            this.textarea = finalText;
+            // console.log(this.textarea + 'if');
           } else {
-            newInterimTranscript += result[0].transcript;
+            // 处理临时结果
+            const transcript = result[0].transcript;
+            interimText = transcript;
+            // 显示临时结果，临时结果覆盖之前的临时结果
+            // console.log(this.textarea);
+
+            this.textarea = text + finalText + interimText;
           }
         }
-
-        // 更新最后处理的结果索引
-        lastResultIndex = event.results.length;
-
-        // 将新的识别结果追加到原有的 transcript 后面
-        // this.transcript = this.transcript + newFinalTranscript + newInterimTranscript;
-        this.textarea = this.textarea + newFinalTranscript + newInterimTranscript;
         this.adjustHeight();
       };
-
-     // 当识别结束时触发的事件处理函数
-    this.recognition.onend = () => {
-        // 标记录音结束
-        this.isRecording = false;
-        if (microphoneStream) {
-            microphoneStream.getTracks().forEach((track) => track.stop());
-        }
-    };
-
     } else {
       // 浏览器不支持语音识别功能时，在控制台输出提示信息
-      this.$message.error("浏览器不支持语音识别功能")
+      console.log("浏览器不支持语音识别功能");
     }
+    const md = new MarkdownIt({
+      html: true, // 在源码中启用 HTML 标签
+      breaks: true, // 转换段落里的 '\n' 到 <br>。
+      // 新增标题渲染相关配置，可根据需求调整
+      linkify: true,
+      typographer: true,
+      // 可设置标题渲染深度等
+      heading: {
+        lvl: 1,
+        max: 6,
+      },
+    });
+    this.md = md;
+    if (this.$store.state.token !== "") {
+      this.getHistory();
+    }
+    // this.answerText=this.chats[this.chats.length-1].content;
   },
   beforeDestroy() {
     this.cleanupMouseEvents();
@@ -1698,6 +2642,13 @@ export default {
   },
 
   methods: {
+    formatTooltip(val) {
+      return val / 100;
+    },
+    dialogYes() {
+      this.isShowDialog = false;
+      this.$message.success("修改成功");
+    },
     setupMouseEvents() {
       const headerImage = this.$refs.headerImage;
       const firstBox = this.$refs.firstBox;
@@ -1753,7 +2704,7 @@ export default {
       const maxHeight = 13;
 
       // 先将高度设为auto，以便scrollHeight能正确反映当前内容高度
-      questionTextarea.style.height = 'auto';
+      questionTextarea.style.height = "auto";
 
       // 获取上下padding值
       const computedStyle = window.getComputedStyle(questionTextarea);
@@ -1763,8 +2714,10 @@ export default {
       // 计算不包含padding的内容高度
       const contentHeight = questionTextarea.scrollHeight - totalPadding;
 
-      const height = Math.min((contentHeight / window.innerHeight) * 100 - 2.39568345323741, maxHeight);
-
+      const height = Math.min(
+        (contentHeight / window.innerHeight) * 100 - 2.39568345323741,
+        maxHeight
+      );
 
       this.textareaHeight = height;
     },
@@ -1795,13 +2748,17 @@ export default {
     },
     showVideo(index) {
       // if (this.nowVideo === this.videos[index]) return; // 避免重复赋值
-      console.log("old:" + this.nowVideo);
+      // console.log("old:" + this.nowVideo);
       this.isShowVideo = true;
       this.nowVideo = this.videos[index];
-      console.log("now:" + this.nowVideo);
+      // console.log("now:" + this.nowVideo);
     },
     changePage(name) {
-      this.$bus.$emit("c-" + name, name);
+      if (this.$store.state.token === "") {
+        this.$bus.$emit("c-Login", "Login");
+      } else {
+        this.$bus.$emit("c-" + name, name);
+      }
     },
     async loadBMapGL() {
       return new Promise((resolve, reject) => {
@@ -1907,14 +2864,13 @@ export default {
         this.map.clearOverlays();
       }
 
-
       const feature = this.cityData.features.find(
         (feature) => feature.properties.name === cityName
       );
       if (feature) {
         this.drawHighlightedCityBoundary(feature);
       }
-      this.sendMessage(cityName)
+      this.sendCity(cityName);
     },
 
     drawHighlightedCityBoundary(feature) {
@@ -1934,59 +2890,401 @@ export default {
         this.map.addOverlay(this.highlightedPolygon);
       });
     },
-    sendMessage(city = '') {
-      if (this.isTextEmpty&&!city) {
+    sendImg() {
+      this.answerBuffer = "";
+      this.thinkingBuffer = "";
+      this.thinkingCompleteMarkdown = "";
+      this.answerCompleteMarkdown = "";
+      let id = this.chats.length;
+      const message = {
+        id: id,
+        type: "user",
+        avatar: this.$store.state.avatarImageUrl,
+        thinking: "",
+        answer: "",
+        content: "",
+        imgUrl: this.uploadImgUrl,
+        modules: [],
+      };
+      const aiMessage = {
+        id: id + 1,
+        type: "assistant",
+        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        thinking: "",
+        answer: "",
+        content: "",
+        imgUrl: "",
+        modules: [],
+      };
+      const url = `${this.$baseUrl}agent/location`;
+      const formData = new FormData();
+      formData.append("file", this.selectedFile);
+      // console.log(formData);
+
+      this.chats.push(message);
+      this.isThinking = true;
+      this.fetchData(url, formData, aiMessage);
+
+      this.textarea = "";
+      this.transcript = "";
+      this.textareaHeight = 3;
+      this.uploadImgUrl = "";
+    },
+    handleEvent(event, aiMessage) {
+      if (this.isThinking) {
+        this.isThinking = false;
+        this.chats.push(aiMessage);
+      }
+
+      const handleEventData = (completeMarkdownKey, bufferKey, eventName) => {
+        // 1. 处理数据
+        const normalizedData = event.data
+          .replace(/\\n/g, "\n")
+          .replace(/\r?\n\r?\n/g, "\n\n");
+
+        // 2. 更新完整内容
+        this[completeMarkdownKey] += normalizedData;
+
+        // 3. 添加到缓冲区
+        this[bufferKey] += normalizedData;
+
+        // 4. 使用防抖进行渲染
+        // clearTimeout(this.renderTimer);
+        // this.renderTimer = setTimeout(() => {
+        this.renderMarkdown(eventName);
+        // }, 100); // 100ms 的防抖时间
+
+        // 5. 强制在特定标记处渲染
+        if (this.shouldForceRender(normalizedData)) {
+          this.renderMarkdown(eventName);
+        }
+      };
+
+      if (event.name === "思考") {
+        handleEventData("thinkingCompleteMarkdown", "thinkingBuffer", "思考");
+      } else if (event.name === "答案") {
+        handleEventData("answerCompleteMarkdown", "answerBuffer", "答案");
+      }
+    },
+    async fetchDataCommon(url, data, aiMessage, headers) {
+      let isStreamComplete = false;
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            ...headers,
+            token: `${this.$store.state.token}`,
+          },
+          body:
+            typeof data === "object" && !(data instanceof FormData)
+              ? JSON.stringify(data)
+              : data,
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let buffer = "";
+        let currentEvent = { name: null, data: "" };
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) {
+            // 处理最后一个事件
+            if (currentEvent.name) {
+              this.handleEvent(currentEvent, aiMessage);
+            }
+            isStreamComplete = true;
+            break;
+          }
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop();
+          for (const line of lines) {
+            if (line.trim() === "") {
+              // 空行表示一个事件结束
+              if (currentEvent.name) {
+                this.handleEvent(currentEvent, aiMessage);
+                currentEvent = { name: null, data: "" };
+              }
+            } else if (line.startsWith("event:")) {
+              currentEvent.name = line.split(":")[1];
+            } else if (line.startsWith("data:")) {
+              currentEvent.data += line.slice(5);
+            }
+          }
+        }
+        if (isStreamComplete) {
+          this.getHistory();
+        }
+      } catch (error) {
+        console.error("请求出错:", error);
+      }
+    },
+    async fetchData(url, data, aiMessage) {
+      return this.fetchDataCommon(url, data, aiMessage, {});
+    },
+    async fetchData2(url, data, aiMessage) {
+      return this.fetchDataCommon(url, data, aiMessage, {
+        "Content-Type": "application/json",
+      });
+    },
+    shouldForceRender(text) {
+      // 定义需要强制渲染的标记
+      const forceRenderMarkers = [
+        "###",
+        "##",
+        "####", // 新增这一项
+        "\n\n",
+        "。",
+        "！",
+        "？",
+      ];
+      return forceRenderMarkers.some((marker) => text.includes(marker));
+    },
+    // 辅助函数，根据 type 获取对应的 buffer 键名
+    getBufferKey(type) {
+      return type === "思考" ? "thinkingBuffer" : "answerBuffer";
+    },
+    // 辅助函数，根据 type 获取对应的完整 markdown 键名
+    getCompleteMarkdownKey(type) {
+      return type === "思考"
+        ? "thinkingCompleteMarkdown"
+        : "answerCompleteMarkdown";
+    },
+    // 辅助函数，根据 type 获取对应的聊天记录键名
+    getChatKey(type) {
+      return type === "思考" ? "thinking" : "answer";
+    },
+    // 渲染 Markdown 内容
+    renderMarkdown(type) {
+      const bufferKey = this.getBufferKey(type);
+      if (!this[bufferKey]) return;
+
+      try {
+        const completeMarkdownKey = this.getCompleteMarkdownKey(type);
+        // 渲染新内容
+        const renderedContent = this.md.render(this[completeMarkdownKey]);
+
+        this.$nextTick(() => {
+          const chatKey = this.getChatKey(type);
+          // 更新 DOM
+          this.chats[this.chats.length - 1][chatKey] = renderedContent;
+
+          // 清空缓冲区
+          this[bufferKey] = "";
+
+          // 滚动到底部（如果需要）
+          this.scrollToBottom();
+        });
+      } catch (error) {
+        console.error("Markdown 渲染错误:", error);
+      }
+    },
+
+    scrollToBottom() {
+      
+      this.$nextTick(() => {
+        const chatContainer = this.$refs.cultureBox;
+        if (chatContainer) {
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+      });
+    },
+    sendMessage() {
+      this.transcript = "";
+      this.answerBuffer = "";
+      this.thinkingBuffer = "";
+      this.thinkingCompleteMarkdown = "";
+      this.answerCompleteMarkdown = "";
+      let id = this.chats.length;
+      if (this.isTextEmpty) {
         this.$message.error("还没说呢");
         return;
       } else {
-        let message = {
-          type: 'user',
-          avatar: this.$store.state.avatar,
-          content: city ? `我想了解${city}的文化` : this.textarea,
-          modules: []
-        };
-        console.log(message);
+        if (this.uploadImgUrl !== "") {
+          this.sendImg();
+        } else {
+          let message = {
+            id: id,
+            type: "user",
+            avatar: this.$store.state.avatarImageUrl,
+            thinking: "",
+            answer: "",
+            content: this.textarea,
+            imgUrl: "",
+            modules: [],
+          };
+          console.log(message);
 
-        const aiMessage = {
-          type: 'ai',
-          avatar: 'http://localhost:8080/img/ai.d3e17c3d.gif',
-          content: "请求超时，服务器繁忙，没想出来",
-          modules: []
-        };
-        const aiMessage2 = {
-          type: 'ai',
-          avatar: 'http://localhost:8080/img/ai.d3e17c3d.gif',
-          content: "这是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本是一段测试文本",
-          modules: [
-          ]
-        };
-        this.chats.push(message);
-        this.isThinking = true;
-        this.$nextTick(() => {
-          const chatContainer = this.$refs.cultureBox;
-          if (chatContainer) {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-          }
-        });
-        const source = axios.CancelToken.source();
-        const timeoutId = setTimeout(() => {
-          source.cancel('请求超时');
-          this.isThinking = false;
-          this.chats.push(aiMessage);
+          const aiMessage = {
+            id: id + 1,
+            type: "assistant",
+            avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+            thinking: "",
+            answer: "",
+            content: "",
+            imgUrl: "",
+            modules: [],
+          };
+
+          this.chats.push(message);
+          this.isThinking = true;
           this.$nextTick(() => {
             const chatContainer = this.$refs.cultureBox;
             if (chatContainer) {
               chatContainer.scrollTop = chatContainer.scrollHeight;
             }
           });
-        }, 60000);
 
-        axios.post(`${this.$baseUrl}user/sendMessage`, message.content, {
+          const url = `${this.$baseUrl}agent/chat`;
+
+          const chatAto = {
+            message: message.content,
+            historyId: this.historyId,
+          };
+          console.log(chatAto);
+
+          this.isThinking = true;
+          this.fetchData2(url, chatAto, aiMessage);
+          setTimeout(() => {
+            this.getHistoryId();
+          }, 500);
+
+          this.textarea = "";
+          this.transcript = "";
+          this.textareaHeight = 3;
+          this.uploadImgUrl = "";
+        }
+      }
+    },
+    sendCity(city) {
+      this.transcript = "";
+      this.$store.dispatch("setCity", city);
+      let message = {
+        type: "user",
+        avatar: this.$store.state.avatarImageUrl,
+        content: `我想了解${city}的文化`,
+        imgUrl: "",
+        modules: [],
+      };
+
+      const aiMessage = {
+        type: "assistant",
+        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        content: `下面是${city}文化盲盒，打开看看吧！`,
+        imgUrl: "",
+        modules: [
+          {
+            title: "",
+            tip: "",
+            bck: "http://localhost:8080/img/mei.24b2b9c2.jpg",
+            content: "123456789012345678990",
+          },
+          {
+            title: "",
+            tip: "",
+            bck: "http://localhost:8080/img/lan.74623f83.jpg",
+            content: "123456789012345678990",
+          },
+          {
+            title: "",
+            tip: "",
+            bck: "http://localhost:8080/img/zhu.3fc13509.jpg",
+            content: "123456789012345678990",
+          },
+          {
+            title: "",
+            tip: "",
+            bck: "	http://localhost:8080/img/jv.4473df25.jpg",
+            content: "123456789012345678990",
+          },
+        ],
+      };
+
+      this.chats.push(message);
+      this.isThinking = true;
+      this.$nextTick(() => {
+        const chatContainer = this.$refs.cultureBox;
+        if (chatContainer) {
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+      });
+      setTimeout(() => {
+        this.isThinking = false;
+        this.chats.push(aiMessage);
+        this.$nextTick(() => {
+          const chatContainer = this.$refs.cultureBox;
+          if (chatContainer) {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+          }
+        });
+      }, 300);
+      this.textarea = "";
+      this.transcript = "";
+      this.textareaHeight = 3;
+    },
+
+    giveImg(demand) {
+      let message = {
+        type: "user",
+        avatar: this.$store.state.avatar,
+        content: demand,
+        imgUrl: "",
+        modules: [],
+      };
+
+      const aiMessage = {
+        type: "assistant",
+        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        content: "请求超时，服务器繁忙，没想出来",
+        imgUrl: "",
+        modules: [],
+      };
+      const aiMessage3 = {
+        type: "assistant",
+        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        content: "描述一下要求吧",
+        imgUrl: "",
+        modules: [],
+      };
+      const aiMessage2 = {
+        type: "assistant",
+        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        content: "",
+        imgUrl:
+          "https://pic1.zhimg.com/v2-e0092fca8c6bb0d50a308acf39dd3fac_r.jpg",
+        modules: [],
+      };
+      this.chats.push(aiMessage3);
+      this.isThinking = true;
+      this.$nextTick(() => {
+        const chatContainer = this.$refs.cultureBox;
+        if (chatContainer) {
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+      });
+      const source = axios.CancelToken.source();
+      const timeoutId = setTimeout(() => {
+        source.cancel("请求超时");
+        this.isThinking = false;
+        this.chats.push(aiMessage);
+        this.$nextTick(() => {
+          const chatContainer = this.$refs.cultureBox;
+          if (chatContainer) {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+          }
+        });
+      }, 60000);
+
+      axios
+        .post(`${this.$baseUrl}user/sendMessage`, message.content, {
           headers: {
             token: `${this.$store.state.token}`,
           },
-          cancelToken: source.token
-        }).then((response) => {
+          cancelToken: source.token,
+        })
+        .then((response) => {
           clearTimeout(timeoutId);
           this.isThinking = false;
           this.chats.push(response.data.data);
@@ -1996,45 +3294,263 @@ export default {
               chatContainer.scrollTop = chatContainer.scrollHeight;
             }
           });
-        }).catch((error) => {
+        })
+        .catch((error) => {
           clearTimeout(timeoutId);
           this.isThinking = false;
           if (axios.isCancel(error)) {
-            console.log('请求被取消: ', error.message);
+            console.log("请求被取消: ", error.message);
           } else {
             this.$message.error("ERROR：" + error.message);
-            this.chats.push(aiMessage2)
+            this.chats.push(aiMessage2);
+            this.$nextTick(() => {
+              const chatContainer = this.$refs.cultureBox;
+              if (chatContainer) {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+              }
+            });
           }
         });
 
-        this.textarea = '';
-        this.textareaHeight = 3;
-      }
+      this.textarea = "";
+      this.textareaHeight = 3;
     },
     sayingInMessage() {
       this.isRecording = !this.isRecording;
-      console.log(this.isRecording);
 
       if (this.isRecording) {
+        this.$refs.questionTextarea.focus();
         this.recognition.start();
-
       } else {
+        this.$refs.questionTextarea.focus();
         this.recognition.stop();
       }
     },
+    changLanguage(row) {
+      this.translateLanguage = row.code;
+      // alert(this.translateLanguage)
+    },
+    translateText(id,type) {
+      const aiMessage = {
+        id: id + 1,
+        type: "assistant",
+        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        thinking: "",
+        answer: "",
+        content: "",
+        imgUrl: "",
+        modules: [],
+      };
+      this.chats.push(aiMessage);
+      console.log(this.chats);
+      console.log(id);
+      
+      let translate = {
+        language: this.translateLanguage,
+        text: this.chats[id-1].thinking
+      };
+      console.log('1:'+translate.language);
+      console.log('1:'+translate.text);
+      
+      axios
+        .post(`${this.$baseUrl}agent/translate`, translate, {
+          headers: {
+            token: `${this.$store.state.token}`,
+          },
+        })
+        .then((response) => {
+          this.isThinking = false;
+          this.chats[this.chats.length - 1].thinking = this.md.render(response.data);
+          this.$nextTick(() => {
+            const chatContainer = this.$refs.cultureBox;
+            if (chatContainer) {
+              chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+          });
+          translate.text = this.chats[id-1].answer;
+           console.log('2:'+translate.language);
+      console.log('2:'+translate.text);
+          axios
+            .post(`${this.$baseUrl}agent/translate`, translate, {
+              headers: {
+                token: `${this.$store.state.token}`,
+              },
+            })
+            .then((response) => {
+              this.chats[this.chats.length - 1].answer = this.md.render(response.data);
+              this.$nextTick(() => {
+                const chatContainer = this.$refs.cultureBox;
+                if (chatContainer) {
+                  chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+              });
+            })
+            .catch((error) => {
+              console.log(error.message);
+            });
+        })
+        .catch((error) => {
+          clearTimeout(timeoutId);
+          this.isThinking = false;
+          console.log(error.message);
+        });
+      this.$nextTick(() => {
+        const chatContainer = this.$refs.cultureBox;
+        if (chatContainer) {
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+      });
+    },
+    deleteUploadImgUrl() {
+      this.uploadImgUrl = "";
+    },
+    showFileInput() {
+      if (this.uploadImgUrl === "") {
+        this.$refs.fileInput.click();
+      } else {
+        this.uploadImgUrl = "";
+        this.$refs.fileInput.click();
+      }
+    },
+    handleFileUpload(event) {
+      this.selectedFile = event.target.files[0];
+      this.uploadImgUrl = URL.createObjectURL(this.selectedFile);
+      if (this.selectedFile) {
+        const reader = new FileReader();
+        // 读取文件作为 data URL
+        reader.readAsDataURL(this.selectedFile);
+      }
+    },
+    getHistoryId() {
+      axios
+        .post(
+          `${this.$baseUrl}agent/getHistoryId`,
+          {},
+          {
+            headers: {
+              token: `${this.$store.state.token}`,
+            },
+          }
+        )
+        .then((response) => {
+          this.historyId = response.data;
+          // console.log(this.historyId);
+        })
+        .catch((error) => {
+          this.$message.error("History Error:" + error.message);
+          console.log("History Error:" + error.message);
+        });
+    },
+    getHistory() {
+      axios
+        .post(
+          `${this.$baseUrl}agent/histories`,
+          {},
+          {
+            headers: {
+              token: `${this.$store.state.token}`,
+            },
+          }
+        )
+        .then((response) => {
+          //  this.$set(this, 'historyes', response.data);
+          this.historyes = response.data;
+          // console.log(response.data);
 
+          // console.log(this.historyes);
+        })
+        .catch((error) => {
+          // this.$message.error("History Error:" + error.message);
+          console.log("History Error:" + error.message);
+        });
+    },
+    backHistory(id) {
+      this.historyId = id;
+      this.getHistory();
+      // console.log("hid  " + this.historyId);
+
+      for (const time in this.historyes.histories) {
+        if (this.historyes.histories.hasOwnProperty(time)) {
+          const historyItem = this.historyes.histories[time];
+          if (historyItem.historyId === id) {
+            const newChats2 = [];
+             this.translateId=0;
+            historyItem.messages.forEach((msg) => {
+              // console.log("msg:" + msg);
+              this.translateId++;
+              const newChat = {
+                id: this.translateId,
+                type: msg.role,
+                avatar:
+                  msg.type === "assistant"
+                    ? "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif"
+                    : this.$store.state.avatarImageUrl,
+                thinking: "",
+                answer: msg.role === "assistant"? this.md.render(msg.content) : "",
+                content: msg.role === "user" ? msg.content : "",
+                imgUrl: "",
+                modules: [],
+              };
+              newChats2.push(newChat);
+              // console.log("newChats2:" + newChats2);
+            });
+            this.$set(this, "chats", newChats2);
+            this.$nextTick(() => {
+              const chatContainer = this.$refs.cultureBox;
+              if (chatContainer) {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+              }
+            });
+            // console.log("this.chats:" + this.chats);
+
+            return;
+          }
+        }
+      }
+    },
+    deleteHistory(id) {
+      const formData = new FormData();
+      formData.append('historyId',id)
+      axios
+        .post(`${this.$baseUrl}agent/deleteHistory`, formData, {
+          headers: {
+            token: `${this.$store.state.token}`,
+          },
+        })
+        .then((response) => {
+          this.getHistory();
+        })
+        .catch((error) => {
+          // this.$message.error(error.message);
+          console.log(error.message);
+        });
+    },
+    newSaying() {
+      this.historyId = "";
+      this.$set(this, "chats", []);
+    },
+    exit(){
+      this.changePage('Login')
+        this.$store.dispatch("setAdmin", '');
+        this.$store.dispatch("setToken", '');
+    }
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.container {
+  width: 100vw;
+  overflow: hidden;
+}
+
 .first-box {
   position: relative;
   width: 100vw;
   height: 100vh;
   /* 使用视口单位 */
   overflow: hidden;
-  background-image: url("@/assets/image/Home/02bck.png");
+  background-image: url("@/assets/image/Home/jj.png");
 }
 
 .header-image {
@@ -2644,11 +4160,45 @@ export default {
   width: 100vw;
   height: 100vh;
   display: flex;
+  transition: 0.3s;
+  position: relative;
 }
 
 .mapBox {
   width: 50vw;
   height: 100vh;
+  background-color: #d8e3e7;
+  display: flex;
+  background-image: url("@/assets/image/Home/02bck.png");
+  position: relative;
+}
+
+.allMapBox {
+  width: 48.5vw;
+  height: 100vh;
+}
+
+.mapChange {
+  width: 1.5vw;
+  height: 25px;
+  /* background-color: #2376b7; */
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  cursor: pointer;
+  transition: 0.3s;
+
+  i {
+    font-size: 25px;
+    font-weight: 700;
+    color: #fff;
+  }
+}
+
+.hideMap {
+  transform: translateX(-48.5vw);
 }
 
 #allmap {
@@ -2666,6 +4216,7 @@ export default {
   overflow: auto;
   /* background: linear-gradient(90deg, rgba(255, 215, 186, 0.3) 0%, rgba(251, 228, 216, 0.3) 100%); */
   background-image: url("@/assets/image/Home/02bck.png");
+  transition: 0.3s;
 }
 
 /* 设置整个滚动条的宽度 */
@@ -2700,6 +4251,7 @@ export default {
   width: 50px;
   height: 50px;
   margin: 15px;
+  cursor: pointer;
   /* background-color: beige; */
 }
 
@@ -2727,6 +4279,10 @@ export default {
   /* 子元素沿交叉轴（在这个案例中是水平方向）的起点对齐 */
 }
 
+.hide-cultureBox {
+  width: 78.5vw;
+}
+
 .dialogBox {
   width: 100%;
   /* padding:10px; */
@@ -2735,6 +4291,7 @@ export default {
   display: flex;
   margin-bottom: 10px;
   align-items: flex-start;
+  position: relative;
   /* 让子元素在交叉轴起始位置对齐 */
 }
 
@@ -2750,7 +4307,6 @@ export default {
   background-color: #f7f4ed;
   background-image: url("@/assets/image/Home/02bck.png");
   border-radius: 15px;
-
 }
 
 .contentBox-right {
@@ -2759,17 +4315,69 @@ export default {
 
 .contentText {
   height: auto;
-  display: flex;
-}
-
-.contentText p {
-
   font-family: kaiti;
-  font-size: 18px;
-  word-wrap: break-word;
-  margin: 0;
-  padding: 0;
+  /* display: flex; */
+  // 列表样式
+  ::v-deep ul,
+  ::v-deep ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    list-style: none; // 移除默认列表样式
+
+    li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1rem;
+
+      &::before {
+        position: absolute;
+        left: -1rem;
+        color: #ff9900;
+      }
+    }
+  }
+
+  ::v-deep ul li::before {
+    content: "✦";
+  }
+
+  ::v-deep ol {
+    counter-reset: item;
+
+    ::v-deep li {
+      counter-increment: item;
+
+      &::before {
+        content: counter(item) ".";
+        font-weight: bold;
+      }
+    }
+  }
+
+  p {
+    display: block;
+    font-family: kaiti;
+    font-size: 18px;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 3px;
+  }
+
+  .thinking {
+    background-color: #ede6d6;
+    border-radius: 15px;
+    padding: 6px;
+    color: #495057;
+  }
+
+  img {
+    display: block;
+  }
 }
+
+/* .contentText p {
+
+} */
 
 .contentModule {
   /* width: 640px; */
@@ -2784,7 +4392,7 @@ export default {
   height: 300px;
   background-color: aqua;
   border-radius: 15px;
-  background: url('@/assets/image/Home/mei.jpg') center center;
+  background: url("@/assets/image/Home/mei.jpg") center center;
   background-size: cover;
   cursor: pointer;
   transition: 0.6s;
@@ -2795,7 +4403,7 @@ export default {
   height: 300px;
   border-radius: 15px;
   margin-left: 20px;
-  background: url('@/assets/image/Home/lan.jpg');
+  background: url("@/assets/image/Home/lan.jpg");
   background-size: cover;
   cursor: pointer;
   transition: 0.6s;
@@ -2809,7 +4417,7 @@ export default {
   width: 200px;
   height: 180px;
   border-radius: 15px;
-  background: url('@/assets/image/Home/zhu.jpg') center center;
+  background: url("@/assets/image/Home/zhu.jpg") center center;
   background-size: cover;
   cursor: pointer;
   transition: 0.6s;
@@ -2820,10 +4428,10 @@ export default {
   height: 105px;
   border-radius: 15px;
   margin-top: 15px;
-  background: url('@/assets/image/Home/jv.jpg') center center;
+  background: url("@/assets/image/Home/jv.jpg") center center;
   background-size: cover;
   cursor: pointer;
-  transition: .6s;
+  transition: 0.6s;
 }
 
 .cultureIntroduce:hover,
@@ -2859,7 +4467,6 @@ export default {
 .icon-color-empty {
   color: gray;
   /* 无文字时的颜色 */
-
 }
 
 .icon-color-filled {
@@ -2880,6 +4487,19 @@ export default {
   transition: 0.3s;
 }
 
+.el-icon-picture-outline-round {
+  font-size: 30px;
+  padding: 5px;
+  border-radius: 100%;
+  background-color: #fff;
+  color: gray;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0.5vh;
+  right: 15vh;
+  transition: 0.3s;
+}
+
 .saying {
   background-color: rgb(244, 52, 52);
   color: #fff;
@@ -2889,21 +4509,29 @@ export default {
   color: #2ba257;
 }
 
+.el-icon-picture-outline-round:hover {
+  color: #2ba257;
+}
+
 .saying:hover {
   color: #fff;
 }
 
 .inputBox {
-  width: 100%;
+  width: 50vw;
   background-color: #d8e3e7;
   transition: 0.5s;
   display: flex;
   position: relative;
   padding: 0.5vh;
   box-sizing: border-box;
-  transition: border 0.5s;
   border: 1.5px solid rgba(255, 0, 0, 0);
+  transition: 0.3s;
   /* border-radius: 15px 15px 0 0; */
+}
+
+.hide-inputBox {
+  width: 78.5vw;
 }
 
 .inputBox:hover {
@@ -2911,7 +4539,7 @@ export default {
 }
 
 .question-textarea {
-  width: 40vw;
+  width: 37vw;
   resize: none;
   font-size: 20px;
   padding: 10px;
@@ -2923,6 +4551,10 @@ export default {
   /* background-color: red; */
   caret-color: #2376b7;
   /* 修改光标颜色为红色 */
+}
+
+.hide-question-textarea {
+  width: 63.5vw;
 }
 
 /* 设置整个滚动条的宽度 */
@@ -2973,5 +4605,244 @@ export default {
   position: absolute;
   right: 2.5vh;
   bottom: 6.5vh;
+}
+
+.aiImg {
+  width: 25vw;
+}
+
+.operateBox {
+  margin-bottom: -10px;
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
+  margin-left: 85px;
+  opacity: 0.35;
+  max-width: 76%;
+  transition: 0.3s;
+
+  img {
+    width: 18px;
+  }
+
+  img:hover {
+    cursor: pointer;
+  }
+}
+
+.operateBox:hover {
+  opacity: 1;
+}
+
+.chatImg {
+  position: relative;
+
+  .uploadImg {
+    max-width: 20vw;
+  }
+
+  .deleteDiv {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      display: block;
+      font-size: 30px;
+      font-weight: 700;
+      color: #fff;
+    }
+  }
+
+  .deleteDiv:hover {
+    opacity: 0.5;
+  }
+}
+
+.fourth-right-right {
+  width: 20vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: absolute;
+  right: -20vw;
+  transition: 0.3s;
+  overflow: auto;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
+  background-image: url("@/assets/image/Home/02bck.png");
+}
+
+.dialog {
+  width: 35vw;
+  height: 45vh;
+  position: absolute;
+  background-color: #c3d7df;
+  background-image: url("@/assets/image/Home/02bck.png");
+  right: -9vw;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  top: 25vh;
+  border-radius: 15px;
+  padding-top: 10px;
+
+  .dialog-close {
+    width: 97%;
+    text-align: end;
+    font-size: 25px;
+    font-weight: 700;
+
+    i {
+      color: #2c3e50;
+      cursor: pointer;
+    }
+  }
+
+  .block {
+    width: 83%;
+    margin-top: 5px;
+    margin-left: 40px;
+  }
+
+  .dialog-yes {
+    width: 90%;
+    margin-top: 30px;
+
+    button {
+      display: block;
+      float: right;
+    }
+  }
+}
+
+.hide-right-right {
+  right: -48.5vw;
+}
+
+/* 滚动条轨道 */
+.fourth-right-right::-webkit-scrollbar-track {
+  background: rgba(204, 204, 214, 0.4);
+  /* 轨道背景色透明度较低，使轨道不那么明显 */
+  border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+.fourth-right-right::-webkit-scrollbar-thumb {
+  background: rgba(204, 204, 214, 0.7);
+  /* 滑块颜色稍微深一点，但仍然保持低调 */
+  border-radius: 10px;
+}
+
+/* 当用户悬停在滚动条上时，改变滑块的颜色 */
+.fourth-right-right::-webkit-scrollbar-thumb:hover {
+  background: rgba(204, 204, 214, 1);
+  cursor: pointer;
+  /* 鼠标悬停时，滑块颜色变得更深一些 */
+}
+
+.fourth-right-right::-webkit-scrollbar {
+  width: 6px;
+  /* 滚动条宽度设置得较窄以显得更细 */
+}
+
+.history-container {
+  padding: 20px;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+
+  i {
+    cursor: pointer;
+    font-size: 30px;
+    color: #2c3e50;
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
+}
+
+.history-icon {
+  font-size: 28px;
+  margin-right: 12px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.history-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.history-item {
+  margin-bottom: 12px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s;
+}
+
+.history-item:hover {
+  transform: translateX(4px);
+}
+
+.history-time {
+  font-weight: 500;
+  color: #6c757d;
+  letter-spacing: 0.5px;
+}
+
+.history-content {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #495057;
+  padding: 12px;
+  background: rgba(248, 249, 250, 0.5);
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.history-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 8px 0;
+
+  button {
+    margin-right: 3px;
+  }
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+}
+.newSaying {
+  display: block;
+  margin-right: 40px;
+  cursor: pointer;
+}
+.exit{
+  width: 24px;
+  margin-left: 28px;
+  cursor: pointer;
 }
 </style>
