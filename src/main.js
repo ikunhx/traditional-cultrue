@@ -27,7 +27,7 @@ new Vue({
   router: router,
   beforeCreate() {
     Vue.prototype.$bus = this
-    Vue.prototype.$baseUrl='http://121.40.221.40:998/'
+    Vue.prototype.$baseUrl='http://101.37.31.126:661/'
   }
 });
 
