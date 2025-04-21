@@ -410,7 +410,7 @@
           :class="isExpandMap ? '' : 'hide-cultureBox'"
         >
           <div class="dialogBox">
-            <div class="avatarBox">
+            <div class="avatarBox" @click="changePage('Center')">
               <img class="ai" src="@/assets/image/Home/ai.gif" />
             </div>
             <div class="contentBox">
@@ -461,7 +461,7 @@
                       寻古人<br />游踪
                     </p>
                   </div>
-                  <div class="AIDraw" @click="giveImg('画一个坤坤')">
+                  <div class="AIDraw">
                     <h4 style="margin: 5px; font-family: kaiti">琴棋书画</h4>
                     <p
                       style="

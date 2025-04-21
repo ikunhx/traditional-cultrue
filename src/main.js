@@ -19,6 +19,11 @@ window.addEventListener('error', e => {
   }
 });
 
+window.addEventListener("beforeunload", function (e) {
+  // (e || window.event).returnValue = '确定离开此页吗？';
+  this.alert(666)
+  //注意：这里return方法是不起作用的
+});
 
 new Vue({
   store,
