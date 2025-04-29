@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Loading class="Loading"/>
+    <Loading class="Loading" v-once />
     <div class="box">
       <router-view></router-view>
     </div>
@@ -57,12 +57,21 @@ export default {
         console.log("####");
       }
     },
-    testUseTime() {
-      const formData = new FormData();
-      formData.append("useTime", 1);
 
+    showPage(name) {
+      console.log(name);
+      if (this.$route.path !== "/" + name) {
+        this.$router.push({
+          name: name,
+        });
+      }
+    },
+    testUseTime() {
+      const time={
+        useTime:1
+      }
       axios
-        .post(`${this.$baseUrl}auth/time`, formData, {
+        .post(`${this.$baseUrl}auth/time`, time, {
           headers: {
             token: `${this.$store.state.token}`,
           },
@@ -74,18 +83,11 @@ export default {
           console.error("发送使用时间到后端时出错");
         });
     },
-
-    showPage(name) {
-      console.log(name);
-      if (this.$route.path !== "/" + name) {
-        this.$router.push({
-          name: name,
-        });
-      }
-    },
   },
   mounted() {
-    this.intervalId = setInterval(this.testUseTime, 60000);
+    if (this.$store.state.token !== "") {
+      this.intervalId = setInterval(this.testUseTime, 60000);
+    }
     this.$bus.$on("c-home", this.homeShow);
     this.$bus.$on("c-Login", (name) => this.showPage(name));
     this.$bus.$on("c-SignUp", (name) => this.showPage(name));

@@ -2,7 +2,7 @@
   <div :class="[isChange ? 'box2-c' : 'box2']">
     <div class="shell">
       <div :class="[isChange ? 'form-c' : 'form']">
-        <img :src="imgUrl" class="leftImg" @click="handelChange">
+        <img :src="imgUrl" class="leftImg" @click="handelChange" />
         <h2 :class="[isChange ? 'title-c' : 'title']">LOGIN</h2>
         <div class="form-item">
           <label for="username" :class="[isChange ? 'Label-c' : 'Label']"
@@ -46,26 +46,28 @@
             <div :id="[isChange ? 'beam-c' : 'beam']" ref="beam"></div>
           </div>
           <div class="form-item">
-          <label for="APIKEY" :class="[isChange ? 'Label-c' : 'Label']"
-            >APIKEY</label
-          >
-          <div class="input-wrapper">
-            <input
-              type="text"
-              id="apiKey"
-              autocomplete="off"
-              autocorrect="off"
-              autocapitalize="off"
-              spellcheck="false"
-              data-lpignore="true"
-              :class="[isChange ? 'input-c' : 'input']"
-              v-model="apiKey"
-              placeholder="选填"
-            />
+            <label for="APIKEY" :class="[isChange ? 'Label-c' : 'Label']"
+              >APIKEY</label
+            >
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="apiKey"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                data-lpignore="true"
+                :class="[isChange ? 'input-c' : 'input']"
+                v-model="apiKey"
+                placeholder="选填"
+              />
+            </div>
           </div>
         </div>
-        </div>
-        <button :class="[isChange ? 'submit-c' : 'submit']" @click="signUp">Sign up</button>
+        <button :class="[isChange ? 'submit-c' : 'submit']" @click="signUp">
+          Sign up
+        </button>
       </div>
     </div>
   </div>
@@ -73,86 +75,86 @@
 
 <script>
 // import { sign } from 'core-js/core/number';
-import axios from 'axios';
-import Boss from './Boss.vue';
+import axios from "axios";
+import Boss from "./Boss.vue";
 export default {
   name: "SignUp",
   data() {
     return {
       isChange: false,
-      account:'',
-      password:'',
-      apiKey:''
-      
+      account: "",
+      password: "",
+      apiKey: "",
     };
   },
   computed: {
     passwordType() {
       return this.isChange ? "text" : "password";
     },
-    imgUrl(){
-      return this.isChange ? require('@/assets/image/Login/left.png') : require('@/assets/image/Login/left2.png');
-      
-    }
+    imgUrl() {
+      return this.isChange
+        ? require("@/assets/image/Login/left.png")
+        : require("@/assets/image/Login/left2.png");
+    },
   },
   methods: {
     eyeClick(e) {
       // e.preventDefault();
       this.isChange = !this.isChange;
     },
-    handelChange(){
-      this.$bus.$emit("c-Login",'Login')
+    handelChange() {
+      this.$bus.$emit("c-Login", "Login");
     },
-    handleHome(){
-      this.$bus.$emit("c-home",'home')
+    handleHome() {
+      this.$bus.$emit("c-home", "home");
     },
-    handleBoss(){
-      this.$bus.$emit("c-Boss",'Boss')
+    handleBoss() {
+      this.$bus.$emit("c-Boss", "Boss");
     },
-    signUp(){
-      const Uesr={
-          username:this.account,
-          password:this.password,
-          apikey:this.apiKey
-        }
-        console.log(Uesr);
-        if(Uesr.account===''){
-          this.$message.error('账号不能为空');
-        }
-        else if(Uesr.password===''){
-          this.$message.error('密码不能为空');
-        }else{
-          axios
-          .post(
-            `${this.$baseUrl}auth/register`,
-            Uesr,
-          )
+    signUp() {
+      const Uesr = {
+        username: this.account,
+        password: this.password,
+        apikey: this.apiKey,
+      };
+      console.log(Uesr);
+      if (Uesr.account === "") {
+        this.$message.error("账号不能为空");
+      } else if (Uesr.password === "") {
+        this.$message.error("密码不能为空");
+      } else {
+        axios
+          .post(`${this.$baseUrl}auth/register`, Uesr)
           .then((response) => {
-            if(response.data.msg=="该用户已存在")
-          {
-            this.$message(response.data.msg);
-          }
-          else{
-            this.$store.dispatch("setToken", response.data.data.token);
-            this.$store.dispatch("setAdmin", response.data.data.admin);
-            if(response.data.data.admin==='1'){
-              this.handleHome();
-              console.log(4);
-              
-            }else{
-              console.log(2);
-              
-              this.handleBoss()
+            console.log(response.data.data.admin);
+
+            if (response.data.msg == "该用户已存在") {
+              this.$message(response.data.msg);
+            } else {
+              this.$store.dispatch("setToken", response.data.data.token);
+              this.$store.dispatch("setAdmin", response.data.data.admin);
+              this.$store.dispatch("setName", "");
+              this.$store.dispatch("setAge", "");
+              this.$store.dispatch("setHobbit", "");
+              this.$store.dispatch("setPhone", "");
+              this.$store.dispatch("setAvatarImageUrl", "");
+              this.$store.dispatch("setMotto", "");
+              this.$store.dispatch("setCity", "");
+              if (this.$store.state.admin == '1') {
+                this.handleHome();
+                console.log(4);
+              } else {
+                console.log(2);
+                console.log(this.$store.state.admin);
+                this.handleBoss();
+              }
             }
-            
-          }
           })
           .catch((error) => {
-             this.$message.error(error.message);
-           
+            this.$message.error(error.message);
           });
-        }
-    }
+      }
+    },
   },
   mounted() {
     const root = document.documentElement;
@@ -166,7 +168,6 @@ export default {
       let degrees = rad * (20 / Math.PI) * -1 - 350;
       beam.style.transform = `translateY(-50%) rotate(${degrees}deg)`;
     });
-   
   },
 };
 </script>
@@ -449,7 +450,7 @@ input:focus {
   pointer-events: none;
   background: rgb(255, 255, 145);
 }
-.leftImg{
+.leftImg {
   position: absolute;
   width: 10%;
   top: 5%;

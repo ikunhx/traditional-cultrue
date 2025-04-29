@@ -136,7 +136,7 @@ export default {
 
 <template>
   <div class="container">
-    <el-tooltip effect="dark" content="退出登录" placement="top">
+    <el-tooltip effect="dark" content="返回" placement="top">
       <img
         src="@/assets/image/Home/tuichudenglu2.png"
         class="exit"
@@ -180,7 +180,7 @@ export default {
   },
   mounted() {
     // this.constructor();
-    const md = new MarkdownIt({
+     const md = new MarkdownIt({
       html: true, // 在源码中启用 HTML 标签
       breaks: true, // 转换段落里的 '\n' 到 <br>。
       // 新增标题渲染相关配置，可根据需求调整
@@ -358,9 +358,6 @@ export default {
     },
     exit() {
       this.changePage("home",'bottom');
-      setTimeout(()=>{
-this.turnBottom();
-      },1000)
       
     },
     changePage(name) {
@@ -370,9 +367,6 @@ this.turnBottom();
         this.$bus.$emit("c-" + name, name);
       }
     },
-    turnBottom(){
-        this.$bus.$emit("turnBottom");
-    }
     // 组件销毁时清理
   },
   beforeDestroy() {

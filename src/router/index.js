@@ -94,21 +94,15 @@ const router = new VueRouter({
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
     const token = store.state.token;
-    const admin = store.state.admin;
     const allowedRoutes = ['Login', 'SignUp'];
-    const isBossRoute = to.path.includes('Boss');
 
     if (!token &&!allowedRoutes.includes(to.name)) {
         // 如果 token 为空且目标路由不在允许列表中，则跳转到登录页
         next({ name: 'Login' });
-    } else if (admin!== '0' && isBossRoute) {
-        // 如果 admin 不为 '0' 且目标路由是 Boss 相关路径，阻止跳转
-        console.log('没有权限访问该页面');
-        next(false);
-    } else {
+    }  else {
         next();
-    }
-});    
+      }
+});  
 
 
 export default router;

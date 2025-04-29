@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <img src="@/assets/image/Home/fanhui.png" class="back" @click="changePage('home')">
+
         <div class="box">
             <div class="left">
                 <div class="left-son">
@@ -44,7 +45,9 @@
                 <i class="el-icon-check" v-if="isEdit" @click="confirmChange"></i>
             </div>
         </div>
+        <div class="dialog">
 
+        </div>
     </div>
 </template>
 
@@ -163,7 +166,6 @@ export default {
         left: 30px;
         cursor: pointer;
     }
-
     .box {
         width: 65vw;
         height: 65vh;

@@ -19,11 +19,11 @@ window.addEventListener('error', e => {
   }
 });
 
-window.addEventListener("beforeunload", function (e) {
-  // (e || window.event).returnValue = '确定离开此页吗？';
-  this.alert(666)
-  //注意：这里return方法是不起作用的
-});
+// window.addEventListener("beforeunload", function (e) {
+//   // (e || window.event).returnValue = '确定离开此页吗？';
+//   this.alert(666)
+//   //注意：这里return方法是不起作用的
+// });
 
 new Vue({
   store,
@@ -32,7 +32,7 @@ new Vue({
   router: router,
   beforeCreate() {
     Vue.prototype.$bus = this
-    Vue.prototype.$baseUrl='http://101.37.31.126:661/'
+    Vue.prototype.$baseUrl='http://121.40.221.40:998/'
   }
 });
 

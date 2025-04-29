@@ -607,7 +607,7 @@
                 <el-table
                   :data="languageData"
                   height="250"
-                  @row-click="changLanguage"
+                  @row-click="(row) => changLanguage(chat.id, row)"
                 >
                   <el-table-column
                     width="100"
@@ -623,7 +623,7 @@
                 <img
                   slot="reference"
                   src="@/assets/image/Home/fanyi.png"
-                  @click="translateText(chat.id,chat.type)"
+                  @click="translateText(chat.id)"
                 />
               </el-popover>
             </div>
@@ -631,7 +631,10 @@
 
           <div class="dialogBox" v-if="isThinking">
             <div class="avatarBox">
-              <img class="ai" src="https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif" />
+              <img
+                class="ai"
+                src="https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif"
+              />
             </div>
             <div class="contentBox">
               <div class="contentText">
@@ -734,7 +737,11 @@
               ></i>
             </el-tooltip>
             <el-tooltip effect="dark" content="退出登录" placement="top">
-              <img src="@/assets/image/Home/tuichudenglu.png" class="exit" @click="exit">
+              <img
+                src="@/assets/image/Home/tuichudenglu.png"
+                class="exit"
+                @click="exit"
+              />
             </el-tooltip>
           </div>
           <div class="history-list">
@@ -887,7 +894,7 @@ export default {
       md: null,
       thinkingCompleteMarkdown: "",
       answerCompleteMarkdown: "",
-      translateId:0,
+      translateId: 0,
       topRightOffset: parseFloat(sessionStorage.getItem("topRightOffset")) || 0,
       topLeftOffset: parseFloat(sessionStorage.getItem("topLeftOffset")) || 0,
       showBtn: sessionStorage.getItem("showBtn") === "true", // 初始化 showBtn 状态
@@ -2507,14 +2514,11 @@ export default {
         宁夏回族自治区: "#FF5733",
         新疆维吾尔自治区: "#FF5733",
       },
-      chats: [
-        
-      ],
-    
+      chats: [],
+
       historyes: {
-       
+      
       },
-     
     };
   },
   computed: {
@@ -2559,6 +2563,7 @@ export default {
       await this.initMap(); // 确保顺序执行
     } catch (error) {
       console.error("地图初始化失败:", error);
+      this.$message.error('地图初始化失败,请刷新重试！')
       // 可在此处添加错误提示
     }
 
@@ -2612,7 +2617,6 @@ export default {
             this.textarea = text + finalText + interimText;
           }
         }
-        this.adjustHeight();
       };
     } else {
       // 浏览器不支持语音识别功能时，在控制台输出提示信息
@@ -2909,7 +2913,8 @@ export default {
       const aiMessage = {
         id: id + 1,
         type: "assistant",
-        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        avatar:
+          "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
         thinking: "",
         answer: "",
         content: "",
@@ -3019,6 +3024,7 @@ export default {
         }
       } catch (error) {
         console.error("请求出错:", error);
+        this.$message.error('回答异常中断，请稍后重试！')
       }
     },
     async fetchData(url, data, aiMessage) {
@@ -3079,11 +3085,11 @@ export default {
         });
       } catch (error) {
         console.error("Markdown 渲染错误:", error);
+        this.$message.error('Markdown 渲染错误')
       }
     },
 
     scrollToBottom() {
-      
       this.$nextTick(() => {
         const chatContainer = this.$refs.cultureBox;
         if (chatContainer) {
@@ -3120,7 +3126,8 @@ export default {
           const aiMessage = {
             id: id + 1,
             type: "assistant",
-            avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+            avatar:
+              "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
             thinking: "",
             answer: "",
             content: "",
@@ -3171,32 +3178,33 @@ export default {
 
       const aiMessage = {
         type: "assistant",
-        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        avatar:
+          "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
         content: `下面是${city}文化盲盒，打开看看吧！`,
         imgUrl: "",
         modules: [
           {
             title: "",
             tip: "",
-            bck: "http://localhost:8080/img/mei.24b2b9c2.jpg",
+            bck: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250423115437.jpg",
             content: "123456789012345678990",
           },
           {
             title: "",
             tip: "",
-            bck: "http://localhost:8080/img/lan.74623f83.jpg",
+            bck: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250423115440.jpg",
             content: "123456789012345678990",
           },
           {
             title: "",
             tip: "",
-            bck: "http://localhost:8080/img/zhu.3fc13509.jpg",
+            bck: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250423115428.jpg",
             content: "123456789012345678990",
           },
           {
             title: "",
             tip: "",
-            bck: "	http://localhost:8080/img/jv.4473df25.jpg",
+            bck: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250423115432.jpg",
             content: "123456789012345678990",
           },
         ],
@@ -3225,96 +3233,6 @@ export default {
       this.textareaHeight = 3;
     },
 
-    giveImg(demand) {
-      let message = {
-        type: "user",
-        avatar: this.$store.state.avatar,
-        content: demand,
-        imgUrl: "",
-        modules: [],
-      };
-
-      const aiMessage = {
-        type: "assistant",
-        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
-        content: "请求超时，服务器繁忙，没想出来",
-        imgUrl: "",
-        modules: [],
-      };
-      const aiMessage3 = {
-        type: "assistant",
-        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
-        content: "描述一下要求吧",
-        imgUrl: "",
-        modules: [],
-      };
-      const aiMessage2 = {
-        type: "assistant",
-        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
-        content: "",
-        imgUrl:
-          "https://pic1.zhimg.com/v2-e0092fca8c6bb0d50a308acf39dd3fac_r.jpg",
-        modules: [],
-      };
-      this.chats.push(aiMessage3);
-      this.isThinking = true;
-      this.$nextTick(() => {
-        const chatContainer = this.$refs.cultureBox;
-        if (chatContainer) {
-          chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-      });
-      const source = axios.CancelToken.source();
-      const timeoutId = setTimeout(() => {
-        source.cancel("请求超时");
-        this.isThinking = false;
-        this.chats.push(aiMessage);
-        this.$nextTick(() => {
-          const chatContainer = this.$refs.cultureBox;
-          if (chatContainer) {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-          }
-        });
-      }, 60000);
-
-      axios
-        .post(`${this.$baseUrl}user/sendMessage`, message.content, {
-          headers: {
-            token: `${this.$store.state.token}`,
-          },
-          cancelToken: source.token,
-        })
-        .then((response) => {
-          clearTimeout(timeoutId);
-          this.isThinking = false;
-          this.chats.push(response.data.data);
-          this.$nextTick(() => {
-            const chatContainer = this.$refs.cultureBox;
-            if (chatContainer) {
-              chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-          });
-        })
-        .catch((error) => {
-          clearTimeout(timeoutId);
-          this.isThinking = false;
-          if (axios.isCancel(error)) {
-            console.log("请求被取消: ", error.message);
-          } else {
-            this.$message.error("ERROR：" + error.message);
-            this.chats.push(aiMessage2);
-            this.$nextTick(() => {
-              const chatContainer = this.$refs.cultureBox;
-              if (chatContainer) {
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-              }
-            });
-          }
-        });
-
-      this.textarea = "";
-      this.textareaHeight = 3;
-    },
     sayingInMessage() {
       this.isRecording = !this.isRecording;
 
@@ -3326,15 +3244,17 @@ export default {
         this.recognition.stop();
       }
     },
-    changLanguage(row) {
+    changLanguage(id,row) {
       this.translateLanguage = row.code;
+      this.translateText(id)
       // alert(this.translateLanguage)
     },
-    translateText(id,type) {
+    translateText(id) {
       const aiMessage = {
         id: id + 1,
         type: "assistant",
-        avatar: "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
+        avatar:
+          "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif",
         thinking: "",
         answer: "",
         content: "",
@@ -3344,14 +3264,14 @@ export default {
       this.chats.push(aiMessage);
       console.log(this.chats);
       console.log(id);
-      
+
       let translate = {
         language: this.translateLanguage,
-        text: this.chats[id-1].thinking
+        text: this.chats[id].thinking,
       };
-      console.log('1:'+translate.language);
-      console.log('1:'+translate.text);
-      
+      console.log("1:" + translate.language);
+      console.log("1:" + translate.text);
+
       axios
         .post(`${this.$baseUrl}agent/translate`, translate, {
           headers: {
@@ -3360,16 +3280,18 @@ export default {
         })
         .then((response) => {
           this.isThinking = false;
-          this.chats[this.chats.length - 1].thinking = this.md.render(response.data);
+          this.chats[this.chats.length - 1].thinking = this.md.render(
+            response.data
+          );
           this.$nextTick(() => {
             const chatContainer = this.$refs.cultureBox;
             if (chatContainer) {
               chatContainer.scrollTop = chatContainer.scrollHeight;
             }
           });
-          translate.text = this.chats[id-1].answer;
-           console.log('2:'+translate.language);
-      console.log('2:'+translate.text);
+          translate.text = this.chats[id - 1].answer;
+          console.log("2:" + translate.language);
+          console.log("2:" + translate.text);
           axios
             .post(`${this.$baseUrl}agent/translate`, translate, {
               headers: {
@@ -3377,7 +3299,9 @@ export default {
               },
             })
             .then((response) => {
-              this.chats[this.chats.length - 1].answer = this.md.render(response.data);
+              this.chats[this.chats.length - 1].answer = this.md.render(
+                response.data
+              );
               this.$nextTick(() => {
                 const chatContainer = this.$refs.cultureBox;
                 if (chatContainer) {
@@ -3387,12 +3311,15 @@ export default {
             })
             .catch((error) => {
               console.log(error.message);
+              this.$message,console.error("服务器繁忙，请稍后重试");
+              
             });
         })
         .catch((error) => {
           clearTimeout(timeoutId);
           this.isThinking = false;
           console.log(error.message);
+           this.$message,console.error("服务器繁忙，请稍后重试");
         });
       this.$nextTick(() => {
         const chatContainer = this.$refs.cultureBox;
@@ -3437,7 +3364,7 @@ export default {
           // console.log(this.historyId);
         })
         .catch((error) => {
-          this.$message.error("History Error:" + error.message);
+          this.$message,console.error("服务器繁忙，请稍后重试");
           console.log("History Error:" + error.message);
         });
     },
@@ -3474,7 +3401,7 @@ export default {
           const historyItem = this.historyes.histories[time];
           if (historyItem.historyId === id) {
             const newChats2 = [];
-             this.translateId=0;
+            this.translateId = 0;
             historyItem.messages.forEach((msg) => {
               // console.log("msg:" + msg);
               this.translateId++;
@@ -3482,11 +3409,12 @@ export default {
                 id: this.translateId,
                 type: msg.role,
                 avatar:
-                  msg.type === "assistant"
+                  msg.role === "assistant"
                     ? "https://oss-mtc.oss-cn-hangzhou.aliyuncs.com/2c927a761478a4a4248706b534bac146.gif"
                     : this.$store.state.avatarImageUrl,
                 thinking: "",
-                answer: msg.role === "assistant"? this.md.render(msg.content) : "",
+                answer:
+                  msg.role === "assistant" ? this.md.render(msg.content) : "",
                 content: msg.role === "user" ? msg.content : "",
                 imgUrl: "",
                 modules: [],
@@ -3501,7 +3429,7 @@ export default {
                 chatContainer.scrollTop = chatContainer.scrollHeight;
               }
             });
-            // console.log("this.chats:" + this.chats);
+            console.log("this.chats:" + this.chats);
 
             return;
           }
@@ -3510,7 +3438,7 @@ export default {
     },
     deleteHistory(id) {
       const formData = new FormData();
-      formData.append('historyId',id)
+      formData.append("historyId", id);
       axios
         .post(`${this.$baseUrl}agent/deleteHistory`, formData, {
           headers: {
@@ -3529,11 +3457,11 @@ export default {
       this.historyId = "";
       this.$set(this, "chats", []);
     },
-    exit(){
-      this.changePage('Login')
-        this.$store.dispatch("setAdmin", '');
-        this.$store.dispatch("setToken", '');
-    }
+    exit() {
+      this.changePage("Login");
+      this.$store.dispatch("setAdmin", "");
+      this.$store.dispatch("setToken", "");
+    },
   },
 };
 </script>
@@ -3550,7 +3478,6 @@ export default {
   height: 100vh;
   /* 使用视口单位 */
   overflow: hidden;
-  background-image: url("@/assets/image/Home/jj.png");
 }
 
 .header-image {
@@ -4840,7 +4767,7 @@ export default {
   margin-right: 40px;
   cursor: pointer;
 }
-.exit{
+.exit {
   width: 24px;
   margin-left: 28px;
   cursor: pointer;

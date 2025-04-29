@@ -2,9 +2,7 @@
   <div class="container" ref="container">
     <div class="box1">
       <p>
-        <span>
-          &nbsp;&nbsp;刺绣
-        </span>
+        <span> &nbsp;&nbsp;刺绣 </span>
         又名“针绣”，俗称“绣花”。以绣针引彩线（丝、绒、线），按设计的花样，
         在织物（丝绸、布帛）上刺缀运针，以绣迹构成纹样或文字，是我国优秀的民族传统工艺之一。
         古代称“黹”、“针黹”。后因刺绣多为妇女所作，故又名“女红”。
@@ -22,73 +20,84 @@
       </p>
     </div>
   </div>
-   
-  </template>
+</template>
   
   <script>
-  export default {
-    name: "Cixiu",
-    beforeRouteEnter(to, from, next) {
+export default {
+  name: "Cixiu",
+  beforeRouteEnter(to, from, next) {
     // 在渲染该组件的对应路由被 confirm 前调用
     // 不能获取组件实例 `this` - 因为当守卫执行时，组件实例还没被创建
-    next(vm => {
+    next((vm) => {
       // 通过 `vm` 访问组件实例
-      console.log('From path:', from.path);
+      console.log("From path:", from.path);
     });
   },
   created() {
-    console.log('From path in created hook:', this.$route.from);
+    console.log("From path in created hook:", this.$route.from);
   },
   mounted() {
-  this.$nextTick(() => {
-    const chatContainer = this.$refs.container;
-    if (chatContainer) {
-      chatContainer.scrollTop = 0;
-      console.log(chatContainer.scrollTop);
-      
+    this.$nextTick(() => {
+      const chatContainer = this.$refs.container;
+      if (chatContainer) {
+        chatContainer.scrollTop = 0;
+        console.log(chatContainer.scrollTop);
+      }
+    });
+    // 添加按键监听事件
+    window.addEventListener("keydown", this.handleKeyDown);
+  },
+   beforeDestroy() {
+    // 移除按键监听事件，避免内存泄漏
+    window.removeEventListener('keydown', this.handleKeyDown);
+  },
+   methods: {
+    handleKeyDown(event) {
+      if (event.key === 'Backspace') {
+        this.$router.back();
+      }
     }
-  });
-}
   }
-  </script>
+};
+</script>
   
   <style scoped>
-  * {
-    margin: 0;
-    padding: 0;
-    font-family: kaiTi;
-  }
-  
-  .container {
-    background-image: url("@/assets/image/Home/cx-bgp.jpg");
-    background-size: cover;
-    height: 100vh;
-    line-height: 50px;
-    background-position: top;
-    padding-top: 150px;
-  }
-  
-  .box1 span {
-    font-size: 50px;
-  }
-  .box1 span:hover {
-    color: brown;
-  }
-  
-  .box1 p {
-    font-size: 30px;
-    transition:all 0.2s;
-    color: rgba(219, 221, 120, 0.9);
-  }
-  .box1 p:hover {
-    font-size: 31px;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: kaiTi;
+}
 
-    color:rgb(7, 244, 106);
-  }
-  
-  .box1 {
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  </style>
+.container {
+  background-image: url("@/assets/image/Home/cx-bgp.jpg");
+  background-size: cover;
+  height: 100vh;
+  line-height: 50px;
+  background-position: top;
+  padding-top: 150px;
+}
+
+.box1 span {
+  font-size: 50px;
+}
+.box1 span:hover {
+  color: brown;
+}
+
+.box1 p {
+  font-size: 30px;
+  transition: all 0.2s;
+  color: rgba(219, 221, 120, 0.9);
+}
+.box1 p:hover {
+  font-size: 31px;
+
+  color: rgb(7, 244, 106);
+}
+
+.box1 {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
